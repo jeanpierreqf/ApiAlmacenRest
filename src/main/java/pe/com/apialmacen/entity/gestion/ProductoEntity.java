@@ -51,23 +51,23 @@ public class ProductoEntity extends EntityBase implements  Serializable{
     
     
     @Column(name="pesproo",nullable = false)
-    @PositiveOrZero(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+    @Positive(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
     private int peso;
     
-     @Column(name="pesproo",nullable = false)
-    @PositiveOrZero(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+     @Column(name="stoproo",nullable = false)
+    @Positive(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
     private int stock;
      
-      @Column(name="pesproo",nullable = false)
-    @PositiveOrZero(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+      @Column(name="desrecproo",nullable = false)
+    @Positive(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
     private int destinorecepcion;
       
-       @Column(name="pesproo",nullable = false)
-    @PositiveOrZero(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+       @Column(name="desproproo",nullable = false)
+    @Positive(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
     private int destinoprocedencia;
        
-        @Column(name="pesproo",nullable = false)
-    @PositiveOrZero(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+        @Column(name="preuniproo",nullable = false)
+    @Positive(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
     private int preciounidad;
         
 
