@@ -30,23 +30,48 @@ import pe.com.apialmacen.entity.base.EntityBase;
 public class ProductoEntity extends EntityBase implements  Serializable{
     private static final long serialVersionUID=1L;
     @Id 
-    @Column(name="codpro")
+    @Column(name="codproo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
-    @Column(name="nompro",length = 40, nullable = false)
+    
+    
+    @Column(name="nomproo",length = 40, nullable = false)
     @NotEmpty(message = "Debe de ingresar el nombre")
-    @Size(min=5,max=40,message = "El nombre debe de tener como minimo {min} y maximo {max}")
     private String nombre;
-    @Column(name="precpro",nullable = false)
+    
+    
+    @Column(name="canproo",nullable = false)
     @Positive(message = "El precio debe de ser mayor a 0")//permita valores positivos
-    private double preciocompra;
-    @Column(name="prevpro",nullable = false)
+    private double cantidad;
+    
+    
+    @Column(name="tamproo",nullable = false)
     @Positive(message = "El precio debe de ser mayor a 0")
-    private double precioventa;
-    @Column(name="canpro",nullable = false)
+    private double tamano;
+    
+    
+    @Column(name="pesproo",nullable = false)
     @PositiveOrZero(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
-    private int cantidad;
+    private int peso;
+    
+     @Column(name="pesproo",nullable = false)
+    @PositiveOrZero(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+    private int stock;
+     
+      @Column(name="pesproo",nullable = false)
+    @PositiveOrZero(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+    private int destinorecepcion;
+      
+       @Column(name="pesproo",nullable = false)
+    @PositiveOrZero(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+    private int destinoprocedencia;
+       
+        @Column(name="pesproo",nullable = false)
+    @PositiveOrZero(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+    private int preciounidad;
+        
+
     @ManyToOne //relacion de uno a muchos
-    @JoinColumn(name="codcat",nullable = false)
-    private ProveedorEntity categoria;
+    @JoinColumn(name="codprove",nullable = false)
+    private ProveedorEntity proveedor;
 }

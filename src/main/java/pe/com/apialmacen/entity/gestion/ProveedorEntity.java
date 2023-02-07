@@ -18,17 +18,18 @@ import pe.com.apialmacen.entity.base.EntityBase;
 @AllArgsConstructor 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Entity(name="CategoriaEntity") //define el nombre de la entidad
-@Table(name="categoria") //define el nombre de la tabla
+@Entity(name="ProveedorEntity") //define el nombre de la entidad
+@Table(name="proveedor") //define el nombre de la tabla
 public class ProveedorEntity extends EntityBase implements Serializable{
     private static final long serialVersionUID=1L;
     @Id //representa la clave primaria
-    @Column(name="codcat")
+    @Column(name="codprove")
     @GeneratedValue(strategy = GenerationType.IDENTITY)//autoincremento
     private long codigo;
     //Colum define la columa de la tabla donde:
+    
     //name: es el nombre, length: tamaño y nullable: si permite valores nulos
-    @Column(name="nomcat",length = 40, nullable = false)
+    @Column(name="nomprove",length = 40, nullable = false)
     //validacion para que el campo no se vacio
     @NotEmpty(message = "Debe de ingresar el nombre")
     //validacion para controlar el tamaño del ingreso de datos
