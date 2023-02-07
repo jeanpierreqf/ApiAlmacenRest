@@ -1,4 +1,3 @@
-
 package pe.com.apialmacen.service.impl.gestion;
 
 import java.util.List;
@@ -27,28 +26,28 @@ public class ProveedorServiceImpl implements ProveedorService {
         }
 
         @Override
-        public ProveedorEntity add(ProveedorEntity p) {
-            return repositorio.save(p);
+        public ProveedorEntity add(ProveedorEntity t) {
+            return repositorio.save(t);
         }
 
         @Override
-        public Optional<ProveedorEntity> findById(long id) {
-            return repositorio.findById(id);
-        }
-
-        @Override
-        public ProveedorEntity update(ProveedorEntity p) {
-            ProveedorEntity objproveeor = repositorio.getById(p.getCodigo());
-            BeanUtils.copyProperties(p, objproveeor);
+        public ProveedorEntity update(ProveedorEntity t) {
+            ProveedorEntity objproveeor = repositorio.getById(t.getCodigo());
+            BeanUtils.copyProperties(t, objproveeor);
             return repositorio.save(objproveeor);
         }
 
         @Override
-        public ProveedorEntity delete(ProveedorEntity p) {
-            ProveedorEntity objproveeor = repositorio.getById(p.getCodigo());
+        public ProveedorEntity delete(ProveedorEntity t) {
+            ProveedorEntity objproveeor = repositorio.getById(t.getCodigo());
             objproveeor.setEstado(false);
             return repositorio.save(objproveeor);
         }
+
+    @Override
+    public Optional<ProveedorEntity> findById(Long id) {
+        return repositorio.findById(id);
+    }
 
         
 

@@ -1,5 +1,8 @@
 package pe.com.apialmacen.service.gestion;
 
-public interface ProductoService {
-    
+import pe.com.apialmacen.entity.gestion.ProductoEntity;
+import pe.com.apialmacen.service.generic.GenericoService;
+
+
+public interface ProductoService extends GenericoService<ProductoEntity> { 
 }
