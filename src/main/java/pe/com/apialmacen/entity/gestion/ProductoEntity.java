@@ -1,4 +1,9 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package pe.com.apialmacen.entity.gestion;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,5 +48,5 @@ public class ProductoEntity extends EntityBase implements  Serializable{
     private int cantidad;
     @ManyToOne //relacion de uno a muchos
     @JoinColumn(name="codcat",nullable = false)
-    private CategoriaEntity categoria;
+    private ProveedorEntity categoria;
 }
