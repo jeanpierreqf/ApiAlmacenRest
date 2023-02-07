@@ -45,37 +45,39 @@ public class ProductoEntity extends EntityBase implements  Serializable{
     
     
     @Column(name="canproo",nullable = false)
-    @Positive(message = "El precio debe de ser mayor a 0")//permita valores positivos
+    @Positive(message = "Debe de ingresar la cantidad de cajas")//permita valores positivos
     private double cantidad;
     
-    
     @Column(name="tamproo",nullable = false)
-    @Positive(message = "El precio debe de ser mayor a 0")
+    @Positive(message = "Debe de ingresar el tamaño de la caja x unidad")
     private double tamano;
     
-    
     @Column(name="pesproo",nullable = false)
-    @Positive(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+    @Positive(message = "Debe de ingresar el precio general")//permite valores positivos o cero
     private int peso;
     
      @Column(name="stoproo",nullable = false)
-    @Positive(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+    @Positive(message = "Debe de ingresar el stock x unidad de caja")//permite valores positivos o cero
     private int stock;
      
       @Column(name="desrecproo",nullable = false)
-    @Positive(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+    @Positive(message = "Poner lugar donde se entrego el producto")//permite valores positivos o cero
     private int destinorecepcion;
       
        @Column(name="desproproo",nullable = false)
-    @Positive(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+    @Positive(message = "Poner lugar donde se enviara el producto")//permite valores positivos o cero
     private int destinoprocedencia;
        
         @Column(name="preuniproo",nullable = false)
-    @Positive(message = "La cantidad debe de ser mayor o igual a cero")//permite valores positivos o cero
+    @Positive(message = "Debe de ingresar el precio del producto x unidad")//permite valores positivos o cero
     private int preciounidad;
         
 
     @ManyToOne //relacion de uno a muchos
     @JoinColumn(name="codprove",nullable = false)
     private ProveedorEntity proveedor;
+    
+    @Column(name="estproo",nullable = false)
+    @Positive(message = "Debe de ingresar el estado")//permite valores positivos o cero
+    private int estado;
 }

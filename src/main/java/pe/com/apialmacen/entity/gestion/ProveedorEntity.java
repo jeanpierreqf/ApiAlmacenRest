@@ -30,11 +30,21 @@ public class ProveedorEntity extends EntityBase implements Serializable{
     private long codigo;
     //Colum define la columa de la tabla donde:
     
-    //name: es el nombre, length: tamaño y nullable: si permite valores nulos
+
     @Column(name="nomprove",length = 40, nullable = false)
-    //validacion para que el campo no se vacio
     @NotEmpty(message = "Debe de ingresar el nombre")
-    //validacion para controlar el tamaño del ingreso de datos
-    @Size(min=5,max=40,message = "El nombre debe de tener como minimo {min} y maximo {max}")
     private String nombre;
+    
+    @Column(name="guiaprove",length = 40, nullable = false)
+    @NotEmpty(message = "Debe de ingresar la guia")
+    private String guia;
+    
+    @Column(name="teleprove",length = 40, nullable = false)
+    @NotEmpty(message = "Debe de ingresar el telefono")
+    private String telefono;
+    
+    @Column(name="estprove",length = 40, nullable = false)
+    @NotEmpty(message = "Debe de ingresar el estado")
+    private String estado;
+
 }
