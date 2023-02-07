@@ -16,7 +16,7 @@ import pe.com.apialmacen.service.gestion.ProveedorService;
 
 
 @RestController
-@RequestMapping("/categoria")
+@RequestMapping("/proveedor")
 public class ProveedorRestController {
     @Autowired
     private ProveedorService servicio;
