@@ -1,5 +1,8 @@
 package pe.com.apialmacen.service.gestion;
 
-public interface EntradaService {
+import pe.com.apialmacen.entity.gestion.EntradaEntity;
+import pe.com.apialmacen.service.generic.GenericoService;
+
+public interface EntradaService extends GenericoService<EntradaEntity>{
     
 }
