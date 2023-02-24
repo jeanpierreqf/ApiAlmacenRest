@@ -8,6 +8,6 @@ package pe.com.apialmacen.entity.gestion;
  *
  * @author gonza
  */
-public class SalidaDetalle {
+public class SalidaDetalleEntity {
     
 }
