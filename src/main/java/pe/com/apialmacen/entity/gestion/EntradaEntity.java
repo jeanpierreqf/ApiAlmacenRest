@@ -32,7 +32,7 @@ public class EntradaEntity extends EntityBase implements Serializable{
     @ManyToOne //relacion de uno a muchos  
     @JoinColumn(name="codpro",nullable = false)
     private ProductoEntity producto;
-    @ManyToOne //relacion de uno a muchos
+    @ManyToOne //relacion de uno a muchos m
     @JoinColumn(name="codusu",nullable = false)
     private UsuariosEntity usuarios;
     @ManyToOne //relacion de uno a muchos
