@@ -35,8 +35,8 @@ public class RolesRestController {
     }
     
     @PostMapping
-    public RolesEntity add(@RequestBody RolesEntity d){
-        return servicio.add(d);
+    public RolesEntity add(@RequestBody RolesEntity r){
+        return servicio.add(r);
     }
     
     @GetMapping("/{id}")
@@ -45,9 +45,9 @@ public class RolesRestController {
     }
     
     @PutMapping("/{id}")
-    public RolesEntity update(@PathVariable long id,@RequestBody RolesEntity d){
-        d.getCodigo();
-        return servicio.update(d);
+    public RolesEntity update(@PathVariable long id,@RequestBody RolesEntity r){
+        r.getCodigo();
+        return servicio.update(r);
     }
     
     @DeleteMapping("/{id}")
