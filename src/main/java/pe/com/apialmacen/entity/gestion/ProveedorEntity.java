@@ -45,19 +45,9 @@ public class ProveedorEntity extends EntityBase implements Serializable{
     @Column(name="correprove",nullable = false)
     @Positive(message = "Correo del proveedor")//permite valores positivos o cero
     private int correo;
-    @ManyToOne //relacion de uno a muchos
-    @JoinColumn(name="codpro",nullable = false)
-    private ProductoEntity producto;
-    @ManyToOne //relacion de uno a muchos
-    @JoinColumn(name="codcat",nullable = false)
-    private CategoriaEntity categoria;
-    @ManyToOne //relacion de uno a muchos
-    @JoinColumn(name="codent",nullable = false)
-    private EntradaEntity entrada;
-    @ManyToOne //relacion de uno a muchos
-    @JoinColumn(name="codentde",nullable = false)
-    private EntradaDetalleEntity entradadetalle;
-     
+    
+
+    
 }
     
 
