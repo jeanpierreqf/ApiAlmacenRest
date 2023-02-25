@@ -50,5 +50,4 @@ public class ProductoEntity extends EntityBase implements Serializable{
     @ManyToOne //relacion de uno a muchos
     @JoinColumn(name="codcat",nullable = false)
     private CategoriaEntity categoria;
-     
 }
