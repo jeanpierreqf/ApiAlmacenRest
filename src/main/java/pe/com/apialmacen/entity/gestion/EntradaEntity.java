@@ -29,7 +29,7 @@ public class EntradaEntity extends EntityBase implements Serializable{
     @Column(name="codent")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
-    @ManyToOne //relacion de uno a muchos
+    @ManyToOne //relacion de uno a muchos  
     @JoinColumn(name="codpro",nullable = false)
     private ProductoEntity producto;
     @ManyToOne //relacion de uno a muchos
