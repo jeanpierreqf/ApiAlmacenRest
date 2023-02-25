@@ -19,4 +19,5 @@ public class RolesEntity extends EntityBase implements Serializable{
     @NotEmpty(message = "Debe de ingresar el nombre")
     @Size(min=5,max=40,message = "El nombre debe de tener como minimo {min} y maximo {max}")
     private String nombre;
+    //pi pi pi pi pi
 }
