@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pe.com.apialmacen.entity.gestion.SalidaDetalleEntity;
 import pe.com.apialmacen.repository.gestion.SalidaDetalleRepository;
 import pe.com.apialmacen.service.gestion.SalidaDetalleService;
 
+@Service
 public class SalidaDetalleServiceImpl implements SalidaDetalleService{
     
     @Autowired
