@@ -26,7 +26,7 @@ import pe.com.apialmacen.entity.base.EntityBase;
 public class SalidaEntity extends EntityBase implements Serializable{
     private static final long serialVersionUID=1L;
     @Id 
-    @Column(name="codent")
+    @Column(name="codsalid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
     @ManyToOne //relacion de uno a muchos
