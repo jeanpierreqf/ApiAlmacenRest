@@ -30,9 +30,9 @@ public class RolesEntity extends EntityBase implements Serializable{
     @Column(name="codrol")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
-    @Column(name="nomprove",length = 30, nullable = false)
+    @Column(name="nomrol",length = 30, nullable = false)
     @NotEmpty(message = "Debe de ingresar el nombre")
     @Size(min=5,max=40,message = "El nombre debe de tener como minimo {min} y maximo {max}")
-    private String nombre;
+    private String nombrerol;
     //pi pi pi pi pi
 }
