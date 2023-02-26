@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
@@ -32,9 +33,9 @@ public class SalidaDetalleEntity extends EntityBase implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
     @Column(name="cantsalida",nullable = false)
-    @Positive(message = "El telefono del proveedor")//permita valores positivos
+    @NotEmpty(message = "El telefono del proveedor")//permita valores positivos
     private int cantidad;
     @Column(name="presalida",nullable = false)
-    @Positive(message = "La direccion del proveedor")
-    private String precio;
+    @NotEmpty(message = "La direccion del proveedor")
+    private Double precio;
 }

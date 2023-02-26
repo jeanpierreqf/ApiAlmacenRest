@@ -37,14 +37,14 @@ public class ProveedorEntity extends EntityBase implements Serializable{
     @Size(min=5,max=40,message = "El nombre debe de tener como minimo {min} y maximo {max}")
     private String nombre;
     @Column(name="telepro",nullable = false)
-    @Positive(message = "El telefono del proveedor")//permita valores positivos
+    @NotEmpty(message = "El telefono del proveedor")//permita valores positivos
     private int telefono;
     @Column(name="direprove",nullable = false)
-    @Positive(message = "La direccion del proveedor")
+    @NotEmpty(message = "La direccion del proveedor")
     private String direccion;
     @Column(name="correprove",nullable = false)
-    @Positive(message = "Correo del proveedor")//permite valores positivos o cero
-    private int correo;
+    @NotEmpty(message = "Correo del proveedor")//permite valores positivos o cero
+    private String correo;
     
 
     

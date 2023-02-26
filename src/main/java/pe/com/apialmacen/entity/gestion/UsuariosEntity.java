@@ -37,19 +37,19 @@ public class UsuariosEntity extends EntityBase implements Serializable{
     @Size(min=5,max=40,message = "El nombre debe de tener como minimo {min} y maximo {max}")
     private String nombre;
     @Column(name="apelliem",length = 100, nullable = false)
-    @Positive(message = "El telefono del proveedor")
+    @NotEmpty(message = "El telefono del proveedor")
     private String apellido;
     @Column(name="sexoem",length = 100, nullable = false)
-    @Positive(message = "La direccion del proveedor")
+    @NotEmpty(message = "La direccion del proveedor")
     private String sexo;
     @Column(name="fnaciemp",nullable = false)
-    @Positive(message = "fecha de nacimiento")
+    @NotEmpty(message = "fecha de nacimiento")
     private String fecha;
     @Column(name="finemp",nullable = false)
-    @Positive(message = "fecha de ingreso")
+    @NotEmpty(message = "fecha de ingreso")
     private String fechaingreso;
     @Column(name="contem",nullable = false)
-    @Positive(message = "contrasena del empleado")
+    @NotEmpty(message = "contrasena del empleado")
     private String contraseña;
    
 }
