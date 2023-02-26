@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
@@ -26,16 +26,16 @@ import pe.com.apialmacen.entity.base.EntityBase;
 @Entity(name="SalidaDetalleEntity") 
 @Table(name="salidadetalle") 
 public class SalidaDetalleEntity extends EntityBase implements Serializable {
-    
+
     private static final long serialVersionUID=1L;
     @Id 
     @Column(name="codsalidade")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
-    @Column(name="cantsalida",nullable = false)
-    @NotEmpty(message = "El telefono del proveedor")//permita valores positivos
+    @Column(name="cantsalida", nullable = false)
+    @Positive(message = "La cantidad de salida debe ser un número positivo")
     private int cantidad;
-    @Column(name="presalida",nullable = false)
-    @NotEmpty(message = "La direccion del proveedor")
-    private Double precio;
+    @Column(name="presalida", nullable = false)
+    @Positive(message = "El precio de salida debe ser un número positivo")
+    private double precio;
 }

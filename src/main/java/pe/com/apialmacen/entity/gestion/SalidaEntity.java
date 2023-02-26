@@ -36,6 +36,6 @@ public class SalidaEntity extends EntityBase implements Serializable{
     @JoinColumn(name="codusu",nullable = false)
     private UsuariosEntity usuarios;
     @ManyToOne //relacion de uno a muchos
-    @JoinColumn(name="codsal",nullable = false)
+    @JoinColumn(name="codsalidade",nullable = false)
     private SalidaDetalleEntity salidadetalle;
 }
