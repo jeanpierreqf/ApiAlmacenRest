@@ -44,12 +44,12 @@ public class UsuariosEntity extends EntityBase implements Serializable{
     private String sexo;
     @Column(name="fnaciemp",nullable = false)
     @Positive(message = "fecha de nacimiento")
-    private int fecha;
+    private String fecha;
     @Column(name="finemp",nullable = false)
     @Positive(message = "fecha de ingreso")
-    private int fechaingreso;
+    private String fechaingreso;
     @Column(name="contem",nullable = false)
     @Positive(message = "contrasena del empleado")
-    private int contraseña;
+    private String contraseña;
    
 }
