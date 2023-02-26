@@ -27,7 +27,7 @@ import pe.com.apialmacen.entity.base.EntityBase;
 public class RolesEntity extends EntityBase implements Serializable{
     private static final long serialVersionUID=1L;
     @Id 
-    @Column(name="codprove")
+    @Column(name="codrol")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
     @Column(name="nomprove",length = 30, nullable = false)

@@ -37,7 +37,7 @@ public class EntradaDetalleEntity extends EntityBase implements Serializable {
     private int cantidad;
     @Column(name="preentrada",nullable = false)
     @Positive(message = "La direccion del proveedor")
-    private String precio;
+    private double precio;
     @ManyToOne //relacion de uno a muchos
     @JoinColumn(name="codprove",nullable = false)
     private ProveedorEntity proveedor;
