@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
@@ -51,5 +52,9 @@ public class UsuariosEntity extends EntityBase implements Serializable{
     @Column(name="contem",nullable = false)
     @NotEmpty(message = "contrasena del empleado")
     private String contraseña;
+    
+    @ManyToOne //relacion de uno a muchos
+    @JoinColumn(name="codrol",nullable = false)
+    private RolesEntity roles;
    
 }
