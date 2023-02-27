@@ -12,17 +12,13 @@
             <section>
                 <div class="card">
                     <div class="card-header">
-                        Registro de Salida Detalle
+                        Registro de Salida de Detalle 
                     </div>
                     <div class="card-body">
                         <form th:action="@{/registrarsalidadetalle}" method="post" th:object="${salidadetalle}">
                             <div class="col-6">
                                 <label for="txtNom" class="form-label">Cantidad:</label>
-                                <input type="number" class="form-control" id="txtCan" th:field="*{cantidad}" th:value="${salidadetalle.cantidad}" required>     
-                            </div>
-                            <div class="col-6">
-                                <label for="txtPreC" class="form-label">Precio:</label>
-                                <input type="number" class="form-control" id="txtPreC" th:field="*{precio}" th:value="${salidadetalle.precio}" required>     
+                                <input type="number" class="form-control" id="txtCan" th:field="*{cantidad}" required>     
                             </div>
                             <div class="col-6">
                                 <label for="txtNom" class="form-label">Estado:</label>
@@ -32,7 +28,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Registrar</button>
-                            <a class="btn btn-secondary" th:href="@{/mostrarsalidadetalle}">Cancelar</a>
+                            <a class="btn btn-secondary" th:href="@{/mostrarcategoria}">Cancelar</a>
                         </form>
                     </div>
                 </div>

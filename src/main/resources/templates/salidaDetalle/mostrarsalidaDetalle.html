@@ -63,7 +63,7 @@
                                         <td th:text="${salidadetalle.codigo}" scope="row"></td>
                                         <td th:text="${salidadetalle.cantidad}" ></td>
                                         <td th:text="${salidadetalle.precio}" ></td>
-                                        <td th:text="${categoria.estado}? 'Habilitado':'Deshabilitado'"></td>
+                                        <td th:text="${salidadetalle.estado}? 'Habilitado':'Deshabilitado'"></td>
                                         <td><a th:href="@{/actualizosalidadetalle/{id}(id=${salidadetalle.codigo})}" class="btn btn-success">Seleccionar</a></td>
                                         <td><a th:href="@{/eliminarsalidadetalle/{id}(id=${salidadetalle.codigo})}" class="btn btn-danger">Seleccionar</a></td>
                                     </tr>
@@ -72,8 +72,8 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-primary" th:href="@{/registrocategoria}">Registrar Categoria</a>
-                        <a class="btn btn-warning" th:href="@{/habilitocategoria}">Habilitar Categoria</a>
+                        <a class="btn btn-primary" th:href="@{/registrosalidadetalle}">Registrar Categoria</a>
+                        <a class="btn btn-warning" th:href="@{/habilitosalidadetalle}">Habilitar Categoria</a>
                     </div>
                 </div>
             </section>
