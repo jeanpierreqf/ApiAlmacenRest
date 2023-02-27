@@ -8,7 +8,7 @@ import pe.com.apialmacen.entity.gestion.EntradaEntity;
 
 @Repository
 public interface EntradaRepository extends JpaRepository<EntradaEntity, Long>{
-    @Query("select p from EntradaEntity p where p.estado=1")
+    @Query("select e from EntradaEntity e where e.estado=1")
     List<EntradaEntity> findAllCustom();
 }
     
