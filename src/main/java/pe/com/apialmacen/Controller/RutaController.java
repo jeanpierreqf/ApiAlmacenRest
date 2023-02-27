@@ -12,6 +12,7 @@ import pe.com.apialmacen.entity.gestion.ProveedorEntity;
 import pe.com.apialmacen.entity.gestion.RolesEntity;
 import pe.com.apialmacen.entity.gestion.SalidaDetalleEntity;
 import pe.com.apialmacen.entity.gestion.UsuariosEntity;
+
 import pe.com.apialmacen.service.gestion.CategoriaService;
 import pe.com.apialmacen.service.gestion.ProductoService;
 import pe.com.apialmacen.service.gestion.ProveedorService;
@@ -375,33 +376,6 @@ public class RutaController {
         UsuariosEntity objusuarios = serviciousuarios.findById(id).get();
         serviciousuarios.delete(objusuarios);
         return "redirect:/mostrarusuarios?deshabilito";
-    }
 
-    @GetMapping("/deshabilitarproducto/{id}")
-    public String DeshabilitarPRoducto(@PathVariable Long id, Model modelo) {
-        ProductoEntity objproducto = servicioproducto.findById(id).get();
-        servicioproducto.delete(objproducto);
-        return "redirect:/mostrarproducto?deshabilito";
-    }
-    
-    @GetMapping("/deshabilitarroles/{id}")
-    public String Deshabilitarroles(@PathVariable Long id, Model modelo) {
-        RolesEntity objroles = servicioroles.findById(id).get();
-        servicioroles.delete(objroles);
-        return "redirect:/mostrarroles?deshabilito";
-    }
-    
-    @GetMapping("/deshabilitarproveedor/{id}")
-    public String DeshabilitarProveedor(@PathVariable Long id, Model modelo) {
-        ProveedorEntity objproveedor = servicioproveedor.findById(id).get();
-        servicioproveedor.delete(objproveedor);
-        return "redirect:/mostrarproveedor?deshabilito";
-    }
-    
-    @GetMapping("/deshabilitarsalidadetalle/{id}")
-    public String DeshabilitarSalidadetalle(@PathVariable Long id, Model modelo) {
-        SalidaDetalleEntity objsalidadetalle = serviciosalidadetalle.findById(id).get();
-        serviciosalidadetalle.delete(objsalidadetalle);
-        return "redirect:/mostrarsalidadetalle?deshabilito";
-    }
-}
+    }}
+        
