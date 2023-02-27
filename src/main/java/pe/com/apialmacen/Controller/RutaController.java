@@ -49,7 +49,7 @@ public class RutaController {
 
     @GetMapping("/mostrarproducto")
     public String MostrarProducto(Model modelo) {
-        modelo.addAttribute("productos", servicioproducto.findAllCustom());
+        modelo.addAttribute("producto", servicioproducto.findAllCustom());
         return "/producto/mostrarproducto";
     }
     @GetMapping("/mostrarroles")
