@@ -122,7 +122,7 @@ public class RutaController {
     
     @GetMapping("/actualizoproveedor/{id}")
     public String MostrarActualizarProveedor(@PathVariable Long id, Model modelo) {
-        modelo.addAttribute("roles", servicioproveedor.findById(id).get());
+        modelo.addAttribute("proveedor", servicioproveedor.findById(id).get());
         return "/proveedor/actualizarproveedor";
     
     }
