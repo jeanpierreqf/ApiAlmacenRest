@@ -14,6 +14,7 @@ import pe.com.apialmacen.service.gestion.CategoriaService;
 import pe.com.apialmacen.service.gestion.ProductoService;
 import pe.com.apialmacen.service.gestion.ProveedorService;
 import pe.com.apialmacen.service.gestion.RolesService;
+import pe.com.apialmacen.service.gestion.SalidaDetalleService;
 
 @Controller
 public class RutaController {
@@ -29,6 +30,10 @@ public class RutaController {
     
     @Autowired
     private ProveedorService servicioproveedor;
+    
+    @Autowired
+    private SalidaDetalleService serviciosalidadetalle;
+
 
     @GetMapping()
     public String MostrarInicio() {
@@ -57,6 +62,12 @@ public class RutaController {
         modelo.addAttribute("proveedor", servicioproveedor.findAllCustom());
         return "/proveedor/mostrarproveedor";
     }
+    
+    @GetMapping("/mostrarsalidadetalle")
+    public String MostrarSalidadetalle(Model modelo) {
+        modelo.addAttribute("salidadetalle", serviciosalidadetalle.findAllCustom());
+        return "/salidadetalle/mostrarsalidadetalle";
+    }
 
     @GetMapping("/principal")
     public String MostrarMenuPrincipal() {
@@ -79,7 +90,7 @@ public class RutaController {
         return "/roles/registrarroles";
     }
     
-    @GetMapping("/registrarproveedor")
+    @GetMapping("/registroproveedor")
     public String MostrarRegistrarProveedor(){
         return "/proveedor/registrarproveedor";
     }
