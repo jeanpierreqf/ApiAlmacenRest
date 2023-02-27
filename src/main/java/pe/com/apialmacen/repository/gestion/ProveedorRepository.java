@@ -9,7 +9,7 @@ import pe.com.apialmacen.entity.gestion.ProveedorEntity;
 @Repository
 public interface ProveedorRepository extends JpaRepository<ProveedorEntity, Long>{
     //podemos crear query personalizados
-    @Query("select c from ProveedorEntity c where c.estado=1")
+    @Query("select d from ProveedorEntity d where d.estado=1")
     List<ProveedorEntity> findAllCustom();
 }
     
