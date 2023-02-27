@@ -8,6 +8,6 @@ import pe.com.apialmacen.entity.gestion.EntradaDetalleEntity;
 public interface EntradaDetalleRepository extends JpaRepository<EntradaDetalleEntity, Long>{
     
     //podemos crear query personalizados
-    @Query("select c from EntradaDetalleEntity c where c.estado=1")
+    @Query("select ed from EntradaDetalleEntity ed where ed.estado=1")
     List<EntradaDetalleEntity> findAllCustom();
 }

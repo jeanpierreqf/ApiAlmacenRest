@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import pe.com.apialmacen.entity.gestion.SalidaEntity;
 
 public interface SalidaRepository extends JpaRepository<SalidaEntity, Long>{
-    @Query("select p from SalidaEntity p where p.estado=1")
+    @Query("select sr from SalidaEntity sr where sr.estado=1")
     List<SalidaEntity> findAllCustom();
     
 }

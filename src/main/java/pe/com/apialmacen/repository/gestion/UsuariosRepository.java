@@ -8,7 +8,7 @@ import pe.com.apialmacen.entity.gestion.UsuariosEntity;
 
 public interface UsuariosRepository extends JpaRepository<UsuariosEntity, Long>{
     //podemos crear query personalizados
-    @Query("select c from CategoriaEntity c where c.estado=1")
+    @Query("select u from CategoriaEntity u where u.estado=1")
     List<UsuariosEntity> findAllCustom();
 }
     
