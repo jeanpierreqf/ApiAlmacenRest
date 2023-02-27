@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pe.com.apialmacen.entity.gestion.CategoriaEntity;
 import pe.com.apialmacen.entity.gestion.ProductoEntity;
+import pe.com.apialmacen.entity.gestion.RolesEntity;
 import pe.com.apialmacen.service.gestion.CategoriaService;
 import pe.com.apialmacen.service.gestion.ProductoService;
+import pe.com.apialmacen.service.gestion.RolesService;
 
 @Controller
 public class RutaController {
@@ -19,6 +21,9 @@ public class RutaController {
 
     @Autowired
     private ProductoService servicioproducto;
+    
+    @Autowired
+    private RolesService servicioroles;
 
     @GetMapping()
     public String MostrarInicio() {
@@ -36,6 +41,11 @@ public class RutaController {
         modelo.addAttribute("productos", servicioproducto.findAllCustom());
         return "/producto/mostrarproducto";
     }
+    @GetMapping("/mostrarroles")
+    public String MostrarRoles(Model modelo) {
+        modelo.addAttribute("roles", servicioroles.findAllCustom());
+        return "/roles/mostrarroles";
+    }
 
     @GetMapping("/principal")
     public String MostrarMenuPrincipal() {
@@ -52,18 +62,29 @@ public class RutaController {
         modelo.addAttribute("categorias", serviciocategoria.findAllCustom());
         return "/producto/registrarproducto";
     }
+    
+    @GetMapping("/registroroles")
+    public String MostrarRegistrarRoles() {
+        return "/roles/registrarroles";
+    }
 
     @GetMapping("/actualizocategoria/{id}")
     public String MostrarActualizarCategoria(@PathVariable Long id, Model modelo) {
         modelo.addAttribute("categorias", serviciocategoria.findById(id).get());
         return "/categoria/actualizarcategoria";
     }
-
+    
     @GetMapping("/actualizoproducto/{id}")
     public String MostrarActualizarProducto(@PathVariable Long id, Model modelo) {
         modelo.addAttribute("categorias", serviciocategoria.findAllCustom());
         modelo.addAttribute("productos", servicioproducto.findById(id).get());
         return "/producto/actualizarproducto";
+    }
+    
+    @GetMapping("/actualizoroles/{id}")
+    public String MostrarActualizarRoles(@PathVariable Long id, Model modelo) {
+        modelo.addAttribute("roles", servicioroles.findById(id).get());
+        return "/roles/actualizarroles";
     }
 
     @GetMapping("/habilitocategoria")
@@ -77,6 +98,12 @@ public class RutaController {
         modelo.addAttribute("productos", servicioproducto.findAll());
         return "/producto/habilitarproducto";
     }
+    
+    @GetMapping("/habilitoroles")
+    public String MostrarHabilitarRoles(Model modelo) {
+        modelo.addAttribute("roles", servicioroles.findAll());
+        return "/roles/habilitarroles";
+    }
 
     @ModelAttribute("categoria")
     public CategoriaEntity ModeloCategoria() {
@@ -86,6 +113,11 @@ public class RutaController {
     @ModelAttribute("producto")
     public ProductoEntity ModeloProducto() {
         return new ProductoEntity();
+    }
+    
+    @ModelAttribute("roles")
+    public RolesEntity ModeloRoles() {
+        return new RolesEntity();
     }
 
     @PostMapping("/registrarcategoria")
@@ -99,6 +131,12 @@ public class RutaController {
         servicioproducto.add(p);
         return "redirect:/mostrarproducto?correcto";
     }
+    
+    @PostMapping("/registrarroles")
+    public String RegistroRoles(@ModelAttribute("roles") RolesEntity r) {
+        servicioroles.add(r);
+        return "redirect:/mostrarroles?correcto";
+    }
 
     @PostMapping("/actualizarcategoria/{id}")
     public String ActualizarCategoria(@PathVariable Long id, @ModelAttribute("categoria") CategoriaEntity c) {
@@ -110,6 +148,12 @@ public class RutaController {
     public String ActualizarProducto(@PathVariable Long id, @ModelAttribute("producto") ProductoEntity p) {
         servicioproducto.update(p);
         return "redirect:/mostrarproducto?actualizo";
+    }
+    
+    @PostMapping("/actualizarroles/{id}")
+    public String ActualizarRoles(@PathVariable Long id, @ModelAttribute("roles") RolesEntity r) {
+        servicioroles.update(r);
+        return "redirect:/mostrarroles?actualizo";
     }
 
     @GetMapping("/eliminarcategoria/{id}")
@@ -125,6 +169,13 @@ public class RutaController {
         servicioproducto.delete(objproducto);
         return "redirect:/mostrarproducto?elimino";
     }
+    
+    @GetMapping("/eliminarroles/{id}")
+    public String EliminarRoles(@PathVariable Long id, Model modelo) {
+        RolesEntity objroles = servicioroles.findById(id).get();
+        servicioroles.delete(objroles);
+        return "redirect:/mostrarroles?elimino";
+    }
 
     @GetMapping("/habilitarcategoria/{id}")
     public String HabilitarCategoria(@PathVariable Long id, Model modelo) {
@@ -139,6 +190,13 @@ public class RutaController {
         servicioproducto.enable(objcurso);
         return "redirect:/mostrarproducto?habilito";
     }
+    
+    @GetMapping("/habilitarroles/{id}")
+    public String HabilitarRoles(@PathVariable Long id, Model modelo) {
+        RolesEntity objroles = servicioroles.findById(id).get();
+        servicioroles.enable(objroles);
+        return "redirect:/mostrarroles?habilito";
+    }
 
     @GetMapping("/deshabilitarcategoria/{id}")
     public String DeshabilitarCategoria(@PathVariable Long id, Model modelo) {
@@ -152,5 +210,12 @@ public class RutaController {
         ProductoEntity objproducto = servicioproducto.findById(id).get();
         servicioproducto.delete(objproducto);
         return "redirect:/mostrarproducto?deshabilito";
+    }
+    
+    @GetMapping("/deshabilitarroles/{id}")
+    public String Deshabilitarroles(@PathVariable Long id, Model modelo) {
+        RolesEntity objroles = servicioroles.findById(id).get();
+        servicioroles.delete(objroles);
+        return "redirect:/mostrarroles?deshabilito";
     }
 }

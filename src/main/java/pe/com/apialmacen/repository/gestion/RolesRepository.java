@@ -9,6 +9,6 @@ import pe.com.apialmacen.entity.gestion.RolesEntity;
 @Repository
 public interface RolesRepository extends JpaRepository<RolesEntity, Long>{
     //podemos crear query personalizados
-    @Query("select c from CategoriaEntity c where c.estado=1")
+    @Query("select r from RolesEntity r where r.estado=1")
     List<RolesEntity> findAllCustom();
 }
