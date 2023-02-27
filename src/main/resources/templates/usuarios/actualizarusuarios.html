@@ -48,7 +48,7 @@
                                 <label for="cboRol" class="form-label">Rol:</label>
                                 <select id="cboRol" class="form-select" th:field="*{roles}" requiered>
                                     <option value="">Seleccione un Rol</option>
-                                    <option th:each="categoria:${categorias}" th:value="${categoria.codigo}" th:text="${usuarios.roles}"></option>
+                                    <option th:each="roles:${roles}" th:value="${roles.codigo}" th:text="${roles.nombrerol}"></option>
                                 </select>
                             </div>
                             <div class="col-6">
