@@ -33,8 +33,8 @@ public class EntradaDetalleRestController {
     }
     
     @PostMapping
-    public EntradaDetalleEntity add(@RequestBody EntradaDetalleEntity d){
-        return servicio.add(d);
+    public EntradaDetalleEntity add(@RequestBody EntradaDetalleEntity ed){
+        return servicio.add(ed);
     }
     
     @GetMapping("/{id}")
@@ -43,9 +43,9 @@ public class EntradaDetalleRestController {
     }
     
     @PutMapping("/{id}")
-    public EntradaDetalleEntity update(@PathVariable long id,@RequestBody EntradaDetalleEntity d){
-        d.getCodigo();
-        return servicio.update(d);
+    public EntradaDetalleEntity update(@PathVariable long id,@RequestBody EntradaDetalleEntity ed){
+        ed.getCodigo();
+        return servicio.update(ed);
     }
     
     @DeleteMapping("/{id}")

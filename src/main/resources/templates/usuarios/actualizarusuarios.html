@@ -45,10 +45,10 @@
                                 <input type="text" class="form-control" id="txtContra" th:field="*{contraseña}" th:value="${usuarios.contraseña}" required>     
                             </div>
                             <div class="col-6">
-                                <label for="cboRol" class="form-label">Rol:</label>
-                                <select id="cboRol" class="form-select" th:field="*{roles}" requiered>
+                                <label for="cboRoles" class="form-label">Roles:</label>
+                                <select id="cboRoles" class="form-select" th:field="*{roles}" requiered>
                                     <option value="">Seleccione un Rol</option>
-                                    <option th:each="categoria:${categorias}" th:value="${categoria.codigo}" th:text="${usuarios.roles}"></option>
+                                    <option th:each="role:${roles}" th:value="${roles.codigo}" th:text="${roles.nombrerol}"></option>
                                 </select>
                             </div>
                             <div class="col-6">

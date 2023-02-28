@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-6">
                                 <label for="cboCategoria" class="form-label">Categoria:</label>
-                                <select id="cboCategoria" class="form-select" th:field="*{categoria}" requiered>
+                                <select id="cboCategoria" class="form-select" th:field="*{categoria}" required>
                                     <option value="">Seleccione una categoria</option>
                                     <option th:each="categoria:${categorias}" th:value="${categoria.codigo}" th:text="${categoria.nombre}"></option>
                                 </select>

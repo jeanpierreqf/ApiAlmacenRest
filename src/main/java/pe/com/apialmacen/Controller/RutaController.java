@@ -11,11 +11,18 @@ import pe.com.apialmacen.entity.gestion.ProductoEntity;
 import pe.com.apialmacen.entity.gestion.ProveedorEntity;
 import pe.com.apialmacen.entity.gestion.RolesEntity;
 import pe.com.apialmacen.entity.gestion.SalidaDetalleEntity;
+import pe.com.apialmacen.entity.gestion.UsuariosEntity;
+import pe.com.apialmacen.entity.gestion.EntradaEntity;
+
+
 import pe.com.apialmacen.service.gestion.CategoriaService;
 import pe.com.apialmacen.service.gestion.ProductoService;
 import pe.com.apialmacen.service.gestion.ProveedorService;
 import pe.com.apialmacen.service.gestion.RolesService;
 import pe.com.apialmacen.service.gestion.SalidaDetalleService;
+import pe.com.apialmacen.service.gestion.UsuariosService;
+import pe.com.apialmacen.service.gestion.EntradaService;
+import pe.com.apialmacen.service.gestion.EntradaDetalleService;
 
 @Controller
 public class RutaController {
@@ -34,11 +41,25 @@ public class RutaController {
     
     @Autowired
     private SalidaDetalleService serviciosalidadetalle;
+    
+    @Autowired
+    private UsuariosService serviciousuarios;
+    
+    @Autowired
+    private EntradaService servicioentrada;
+    
+    @Autowired
+    private EntradaDetalleService servicioentradadetalles;
 
 
     @GetMapping()
     public String MostrarInicio() {
         return "index";
+    }
+    @GetMapping("/mostrarusuarios")
+    public String MostrarUsuarios(Model modelo) {
+        modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
+        return "/usuarios/mostrarusuarios";
     }
 
     @GetMapping("/mostrarcategoria")
@@ -78,6 +99,11 @@ public class RutaController {
     @GetMapping("/registrocategoria")
     public String MostrarRegistrarCategoria() {
         return "/categoria/registrarcategoria";
+    }
+    @GetMapping("/registrousuarios")
+    public String MostrarRegistrarUsuarios(Model modelo) {
+        modelo.addAttribute("roles", servicioroles.findAllCustom());
+        return "/usuarios/registrarusuarios";
     }
 
     @GetMapping("/registroproducto")
@@ -122,7 +148,7 @@ public class RutaController {
     
     @GetMapping("/actualizoproveedor/{id}")
     public String MostrarActualizarProveedor(@PathVariable Long id, Model modelo) {
-        modelo.addAttribute("proveedor", servicioproveedor.findById(id).get());
+        modelo.addAttribute("roles", servicioproveedor.findById(id).get());
         return "/proveedor/actualizarproveedor";
     
     }
@@ -137,6 +163,11 @@ public class RutaController {
     public String MostrarHabilitarCategoria(Model modelo) {
         modelo.addAttribute("categorias", serviciocategoria.findAll());
         return "/categoria/habilitarcategoria";
+    }
+    @GetMapping("/habilitousuarios")
+    public String MostrarHabilitarUsuarios(Model modelo) {
+        modelo.addAttribute("usuarios", serviciousuarios.findAll());
+        return "/usuarios/habilitarusuarios";
     }
 
     @GetMapping("/habilitoproducto")
@@ -167,6 +198,10 @@ public class RutaController {
     public CategoriaEntity ModeloCategoria() {
         return new CategoriaEntity();
     }
+    @ModelAttribute("usuarios")
+    public UsuariosEntity ModeloUsuarios() {
+        return new UsuariosEntity();
+    }
 
     @ModelAttribute("producto")
     public ProductoEntity ModeloProducto() {
@@ -183,7 +218,7 @@ public class RutaController {
         return new ProveedorEntity();
     }
     
-    @ModelAttribute("salidadetale")
+    @ModelAttribute("salidadetalle")
     public SalidaDetalleEntity ModeloSalidaDetalle() {
         return new SalidaDetalleEntity();
     }
@@ -192,6 +227,11 @@ public class RutaController {
     public String RegistroCategoria(@ModelAttribute("categoria") CategoriaEntity c) {
         serviciocategoria.add(c);
         return "redirect:/mostrarcategoria?correcto";
+    }
+    @PostMapping("/registrarusuarios")
+    public String RegistroUsuarios(@ModelAttribute("usuarios") UsuariosEntity u) {
+        serviciousuarios.add(u);
+        return "redirect:/mostrarusuarios?correcto";
     }
 
     @PostMapping("/registrarproducto")
@@ -223,6 +263,11 @@ public class RutaController {
         serviciocategoria.update(c);
         return "redirect:/mostrarcategoria?actualizo";
     }
+    @PostMapping("/actualizarusuarios/{id}")
+    public String ActualizarUsuarios(@PathVariable Long id, @ModelAttribute("usuarios") UsuariosEntity u) {
+        serviciousuarios.update(u);
+        return "redirect:/mostrarusuarios?actualizo";
+    }
 
     @PostMapping("/actualizarproducto/{id}")
     public String ActualizarProducto(@PathVariable Long id, @ModelAttribute("producto") ProductoEntity p) {
@@ -253,6 +298,12 @@ public class RutaController {
         CategoriaEntity objcategoria = serviciocategoria.findById(id).get();
         serviciocategoria.delete(objcategoria);
         return "redirect:/mostrarcategoria?elimino";
+    }
+    @GetMapping("/eliminarusuarios/{id}")
+    public String EliminarUsuarios(@PathVariable Long id, Model modelo) {
+       UsuariosEntity objusuarios = serviciousuarios.findById(id).get();
+        serviciousuarios.delete(objusuarios);
+        return "redirect:/mostrarusuarios?elimino";
     }
 
     @GetMapping("/eliminarproducto/{id}")
@@ -289,6 +340,12 @@ public class RutaController {
         serviciocategoria.enable(objcategoria);
         return "redirect:/mostrarcategoria?habilito";
     }
+    @GetMapping("/habilitarusuarios/{id}")
+    public String HabilitarUsuarios(@PathVariable Long id, Model modelo) {
+        UsuariosEntity objusuarios = serviciousuarios.findById(id).get();
+        serviciousuarios.enable(objusuarios);
+        return "redirect:/mostrarusuarios?habilito";
+    }
 
     @GetMapping("/habilitarproducto/{id}")
     public String HabilitarProducto(@PathVariable Long id, Model modelo) {
@@ -324,32 +381,46 @@ public class RutaController {
         serviciocategoria.delete(objcategoria);
         return "redirect:/mostrarcategoria?deshabilito";
     }
+    @GetMapping("/deshabilitarusuarios/{id}")
+    public String DeshabilitarUsuarios(@PathVariable Long id, Model modelo) {
+        UsuariosEntity objusuarios = serviciousuarios.findById(id).get();
+        serviciousuarios.delete(objusuarios);
+        return "redirect:/mostrarusuarios?deshabilito";
+    }
+    @GetMapping("/mostrarentrada")
+    public String MostrarEntrada(Model modelo) {
+        modelo.addAttribute("entrada", servicioentrada.findAllCustom());
+        return "/entrada/mostrarentrada";
+    }
+    
+    @GetMapping("/registroentrada")
+    public String MostrarRegistrarEntrada(Model modelo) {
+        modelo.addAttribute("productos", servicioproducto.findAllCustom());
+        modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
+        modelo.addAttribute("entradadetalles", servicioentradadetalles.findAllCustom());
 
-    @GetMapping("/deshabilitarproducto/{id}")
-    public String DeshabilitarPRoducto(@PathVariable Long id, Model modelo) {
-        ProductoEntity objproducto = servicioproducto.findById(id).get();
-        servicioproducto.delete(objproducto);
-        return "redirect:/mostrarproducto?deshabilito";
+        return "/entrada/registrarentrada";
     }
     
-    @GetMapping("/deshabilitarroles/{id}")
-    public String Deshabilitarroles(@PathVariable Long id, Model modelo) {
-        RolesEntity objroles = servicioroles.findById(id).get();
-        servicioroles.delete(objroles);
-        return "redirect:/mostrarroles?deshabilito";
+    @PostMapping("/registrarentrada")
+    public String RegistroEntrada(@ModelAttribute("entrada") EntradaEntity e) {
+        servicioentrada.add(e);
+        return "redirect:/mostrarentrada?correcto";
     }
     
-    @GetMapping("/deshabilitarproveedor/{id}")
-    public String DeshabilitarProveedor(@PathVariable Long id, Model modelo) {
-        ProveedorEntity objproveedor = servicioproveedor.findById(id).get();
-        servicioproveedor.delete(objproveedor);
-        return "redirect:/mostrarproveedor?deshabilito";
+     @GetMapping("/actualizoentrada/{id}")
+    public String MostrarActualizarEntrada(@PathVariable Long id, Model modelo) {
+        modelo.addAttribute("productos", servicioproducto.findAllCustom());
+        modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
+        modelo.addAttribute("entradadetalles", servicioentradadetalles.findAllCustom());
+        modelo.addAttribute("entradas", servicioentrada.findById(id).get());
+        return "/producto/actualizarproducto";
     }
     
-    @GetMapping("/deshabilitarsalidadetalle/{id}")
-    public String DeshabilitarSalidadetalle(@PathVariable Long id, Model modelo) {
-        SalidaDetalleEntity objsalidadetalle = serviciosalidadetalle.findById(id).get();
-        serviciosalidadetalle.delete(objsalidadetalle);
-        return "redirect:/mostrarsalidadetalle?deshabilito";
+    @PostMapping("/actualizarentrada/{id}")
+    public String ActualizarEntrada(@PathVariable Long id, @ModelAttribute("entrada") EntradaEntity e) {
+        servicioentrada.update(e);
+        return "redirect:/mostrarentrada?actualizo";
     }
 }
+        
