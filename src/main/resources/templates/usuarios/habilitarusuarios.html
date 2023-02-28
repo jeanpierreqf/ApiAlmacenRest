@@ -12,7 +12,7 @@
             <section>
                 <div class="card">
                     <div class="card-header">
-                        Lista de Productos
+                        Lista de Usuarios
                     </div>
                     <div class="card-body">
 
@@ -42,7 +42,7 @@
                                         <td th:text="${usuarios.fecha}" ></td>
                                         <td th:text="${usuarios.fechaingreso}" ></td>
                                         <td th:text="${usuarios.contraseña}" ></td>
-                                        <td th:text="${usuarios.roles.nombre}" ></td>
+                                        <td th:text="${usuarios.roles.nombrerol}" ></td>
                                         <td th:text="${usuarios.estado}? 'Habilitado':'Deshabilitado'"></td>
                                         <td><a th:href="@{/habilitarusuarios/{id}(id=${usuarios.codigo})}" class="btn btn-warning">Seleccionar</a></td>
                                         <td><a th:href="@{/deshabilitarusuarios/{id}(id=${usuarios.codigo})}" class="btn btn-danger">Seleccionar</a></td>
