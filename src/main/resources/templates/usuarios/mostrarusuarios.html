@@ -70,7 +70,7 @@
                                         <td th:text="${usuarios.fecha}" ></td>
                                         <td th:text="${usuarios.fechaingreso}" ></td>
                                         <td th:text="${usuarios.contraseña}" ></td>
-                                        <td th:text="${usuarios.roles.nombre}" ></td>
+                                        <td th:text="${usuarios.roles.nombrerol}" ></td>
                                         <td th:text="${usuarios.estado}? 'Habilitado':'Deshabilitado'"></td>
                                         <td><a th:href="@{/actualizousuarios/{id}(id=${usuarios.codigo})}" class="btn btn-success">Seleccionar</a></td>
                                         <td><a th:href="@{/eliminarusuarios/{id}(id=${usuarios.codigo})}" class="btn btn-danger">Seleccionar</a></td>
