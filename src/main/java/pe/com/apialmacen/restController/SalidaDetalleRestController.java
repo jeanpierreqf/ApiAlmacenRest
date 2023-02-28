@@ -32,8 +32,8 @@ public class SalidaDetalleRestController {
     }
     
     @PostMapping
-    public SalidaDetalleEntity add(@RequestBody SalidaDetalleEntity d){
-        return servicio.add(d);
+    public SalidaDetalleEntity add(@RequestBody SalidaDetalleEntity sd){
+        return servicio.add(sd);
     }
     
     @GetMapping("/{id}")
@@ -42,9 +42,9 @@ public class SalidaDetalleRestController {
     }
     
     @PutMapping("/{id}")
-    public SalidaDetalleEntity update(@PathVariable long id,@RequestBody SalidaDetalleEntity d){
-        d.getCodigo();
-        return servicio.update(d);
+    public SalidaDetalleEntity update(@PathVariable long id,@RequestBody SalidaDetalleEntity sd){
+        sd.getCodigo();
+        return servicio.update(sd);
     }
     
     @DeleteMapping("/{id}")

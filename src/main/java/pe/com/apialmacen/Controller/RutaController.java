@@ -208,7 +208,7 @@ public class RutaController {
         return new ProveedorEntity();
     }
     
-    @ModelAttribute("salidadetale")
+    @ModelAttribute("salidadetalle")
     public SalidaDetalleEntity ModeloSalidaDetalle() {
         return new SalidaDetalleEntity();
     }
