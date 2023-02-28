@@ -12,6 +12,8 @@ import pe.com.apialmacen.entity.gestion.ProveedorEntity;
 import pe.com.apialmacen.entity.gestion.RolesEntity;
 import pe.com.apialmacen.entity.gestion.SalidaDetalleEntity;
 import pe.com.apialmacen.entity.gestion.UsuariosEntity;
+import pe.com.apialmacen.entity.gestion.EntradaEntity;
+
 
 import pe.com.apialmacen.service.gestion.CategoriaService;
 import pe.com.apialmacen.service.gestion.ProductoService;
@@ -20,6 +22,7 @@ import pe.com.apialmacen.service.gestion.RolesService;
 import pe.com.apialmacen.service.gestion.SalidaDetalleService;
 import pe.com.apialmacen.service.gestion.UsuariosService;
 import pe.com.apialmacen.service.gestion.EntradaService;
+import pe.com.apialmacen.service.gestion.EntradaDetalleService;
 
 @Controller
 public class RutaController {
@@ -44,6 +47,9 @@ public class RutaController {
     
     @Autowired
     private EntradaService servicioentrada;
+    
+    @Autowired
+    private EntradaDetalleService servicioentradadetalles;
 
 
     @GetMapping()
@@ -385,6 +391,36 @@ public class RutaController {
     public String MostrarEntrada(Model modelo) {
         modelo.addAttribute("entrada", servicioentrada.findAllCustom());
         return "/entrada/mostrarentrada";
+    }
+    
+    @GetMapping("/registroentrada")
+    public String MostrarRegistrarEntrada(Model modelo) {
+        modelo.addAttribute("productos", servicioproducto.findAllCustom());
+        modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
+        modelo.addAttribute("entradadetalles", servicioentradadetalles.findAllCustom());
+
+        return "/entrada/registrarentrada";
+    }
+    
+    @PostMapping("/registrarentrada")
+    public String RegistroEntrada(@ModelAttribute("entrada") EntradaEntity e) {
+        servicioentrada.add(e);
+        return "redirect:/mostrarentrada?correcto";
+    }
+    
+     @GetMapping("/actualizoentrada/{id}")
+    public String MostrarActualizarEntrada(@PathVariable Long id, Model modelo) {
+        modelo.addAttribute("productos", servicioproducto.findAllCustom());
+        modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
+        modelo.addAttribute("entradadetalles", servicioentradadetalles.findAllCustom());
+        modelo.addAttribute("entradas", servicioentrada.findById(id).get());
+        return "/producto/actualizarproducto";
+    }
+    
+    @PostMapping("/actualizarentrada/{id}")
+    public String ActualizarEntrada(@PathVariable Long id, @ModelAttribute("entrada") EntradaEntity e) {
+        servicioentrada.update(e);
+        return "redirect:/mostrarentrada?actualizo";
     }
 }
         
