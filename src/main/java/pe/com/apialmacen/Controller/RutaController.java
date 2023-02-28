@@ -54,7 +54,7 @@ public class RutaController {
     private EntradaService servicioentrada;
     
     @Autowired
-    private EntradaDetalleService servicioentradadetalles;
+    private EntradaDetalleService servicioentradadetalle;
     
     
 
@@ -472,7 +472,7 @@ public class RutaController {
     public String MostrarRegistrarEntrada(Model modelo) {
         modelo.addAttribute("productos", servicioproducto.findAllCustom());
         modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
-        modelo.addAttribute("entradadetalles", servicioentradadetalles.findAllCustom());
+        modelo.addAttribute("entradadetalles", servicioentradadetalle.findAllCustom());
 
         return "/entrada/registrarentrada";
     }
@@ -487,7 +487,7 @@ public class RutaController {
     public String MostrarActualizarEntrada(@PathVariable Long id, Model modelo) {
         modelo.addAttribute("productos", servicioproducto.findAllCustom());
         modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
-        modelo.addAttribute("entradadetalles", servicioentradadetalles.findAllCustom());
+        modelo.addAttribute("entradadetalles", servicioentradadetalle.findAllCustom());
         modelo.addAttribute("entradas", servicioentrada.findById(id).get());
         return "/producto/actualizarproducto";
     }
