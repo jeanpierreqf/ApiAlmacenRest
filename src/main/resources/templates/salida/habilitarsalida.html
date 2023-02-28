@@ -33,20 +33,20 @@
                                 </thead>
                                 <tbody>
                                     <tr th:each="salida : ${salidas}">
-                                        <td th:text="${entrada.codigo}" scope="row"></td>
-                                        <td th:text="${entrada.producto.codigo}" ></td>
-                                        <td th:text="${entrada.usuarios.codigo}" ></td>
-                                        <td th:text="${entrada.salidadetalle.codigo}" ></td>
-                                        <td th:text="${entrada.estado}? 'Habilitado':'Deshabilitado'"></td>
-                                        <td><a th:href="@{/habilitarentrada/{id}(id=${entrada.codigo})}" class="btn btn-warning">Seleccionar</a></td>
-                                        <td><a th:href="@{/deshabilitarentrada/{id}(id=${entrada.codigo})}" class="btn btn-danger">Seleccionar</a></td>
+                                        <td th:text="${salida.codigo}" scope="row"></td>
+                                        <td th:text="${salida.producto.codigo}" ></td>
+                                        <td th:text="${salida.usuarios.codigo}" ></td>
+                                        <td th:text="${salida.salidadetalle.codigo}" ></td>
+                                        <td th:text="${salida.estado}? 'Habilitado':'Deshabilitado'"></td>
+                                        <td><a th:href="@{/habilitarsalida/{id}(id=${salida.codigo})}" class="btn btn-warning">Seleccionar</a></td>
+                                        <td><a th:href="@{/deshabilitarsalida/{id}(id=${salida.codigo})}" class="btn btn-danger">Seleccionar</a></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-secondary" th:href="@{/mostrarentrada}">Cancelar</a>
+                        <a class="btn btn-secondary" th:href="@{/mostrarsalida}">Cancelar</a>
                     </div>
                 </div>
             </section>
