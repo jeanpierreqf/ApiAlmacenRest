@@ -16,7 +16,7 @@ import pe.com.apialmacen.entity.gestion.SalidaEntity;
 import pe.com.apialmacen.service.gestion.SalidaService;
 
 @RestController
-@RequestMapping("/Salida")
+@RequestMapping("/salida")
 public class SalidaRestController {
     
     @Autowired
@@ -33,8 +33,8 @@ public class SalidaRestController {
     }
     
     @PostMapping
-    public SalidaEntity add(@RequestBody SalidaEntity e){
-        return servicio.add(e);
+    public SalidaEntity add(@RequestBody SalidaEntity sr){
+        return servicio.add(sr);
     }
     
     @GetMapping("/{id}")
@@ -43,9 +43,9 @@ public class SalidaRestController {
     }
     
     @PutMapping("/{id}")
-    public SalidaEntity update(@PathVariable long id,@RequestBody SalidaEntity e){
-        e.getCodigo();
-        return servicio.update(e);
+    public SalidaEntity update(@PathVariable long id,@RequestBody SalidaEntity sr){
+        sr.getCodigo();
+        return servicio.update(sr);
     }
     
     @DeleteMapping("/{id}")

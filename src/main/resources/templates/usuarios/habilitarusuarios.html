@@ -29,12 +29,13 @@
                                         <th scope="col">Fecha de inicio de Trabajo</th>
                                         <th scope="col">Contraseña</th>
                                         <th scope="col">Roles</th>
+                                        <th scope="col">Estado</th>
                                         <th scope="col">Habilitar</th>
                                         <th scope="col">Deshabilitar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="usuarios : ${usuarios}">
+                                    <tr th:each="usuarios : ${usuario}">
                                         <td th:text="${usuarios.codigo}" scope="row"></td>
                                         <td th:text="${usuarios.nombre}" ></td>
                                         <td th:text="${usuarios.apellido}" ></td>

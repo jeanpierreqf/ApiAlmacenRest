@@ -28,13 +28,13 @@
                                     <option th:each="producto:${productos}" th:value="${producto.codigo}" th:text="${producto.nombre}"></option>
                                     </select>
                                 
-                                    <label for="cboCategoria" class="form-label">Usuarios:</label>
+                                    <label for="cboUsuarios" class="form-label">Usuarios:</label>
                                 <select id="cboUsuarios" class="form-select" th:field="*{usuarios}" requiered>
                                     <option value="">Seleccione un usuario</option>
                                     <option th:each="usuario:${usuarios}" th:value="${usuarios.codigo}" th:text="${usuarios.nombre}"></option>
                                     </select>
                                     
-                                    <label for="cboCategoria" class="form-label">SalidaDetalle:</label>
+                                    <label for="cboSalidaDetalle" class="form-label">SalidaDetalle:</label>
                                 <select id="cboSalidaDetalle" class="form-select" th:field="*{salidadetalle}" requiered>
                                     <option value="">Seleccione una salidadetalle</option>
                                     <option th:each="salidadetalles:${salidadetalle}" th:value="${salidadetalle.codigo}" th:text="${salidadetalle.nombre}"></option>

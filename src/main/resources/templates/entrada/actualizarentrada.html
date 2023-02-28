@@ -15,7 +15,7 @@
                         Actualizacion de Entrada
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/actualizarentrada/{id}(id=${entrada.codigo})}" method="post" th:object="${entradas}">
+                        <form th:action="@{/actualizarentrada/{id}(id=${entrada.codigo})}" method="post" th:object="${entrada}">
                             <div class="col-6">
                                 <label for="cboProducto" class="form-label">Producto:</label>
                                 <select id="cboProducto" class="form-select" th:field="*{producto}" required>

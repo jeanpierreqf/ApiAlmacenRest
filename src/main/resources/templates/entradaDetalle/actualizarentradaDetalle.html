@@ -29,10 +29,10 @@
                                 <input type="number" class="form-control" id="txtPreC" th:field="*{precio}" th:value="${entradadetalle.precio}" required>     
                             </div>
                             <div class="col-6">
-                                <label for="cboCategoria" class="form-label">Codigo Proveedor:</label>
-                                <select id="cboCategoria" class="form-select" th:field="*{proveedor}" requiered>
-                                    <option value="">Seleccione una categoria</option>
-                                    <option th:each="categoria:${categorias}" th:value="${proveedor.codigo}" th:text="${proveedor.codigo}"></option>
+                                <label for="cboProveedor" class="form-label">Codigo Proveedor:</label>
+                                <select id="cboProveedor" class="form-select" th:field="*{proveedor}" requiered>
+                                    <option value="">Seleccione un proveedor</option>
+                                    <option th:each="proveedor:${proveedor}" th:value="${proveedor.codigo}" th:text="${proveedor.codigo}"></option>
                                 </select>
                             </div>
                             <div class="col-6">
@@ -44,7 +44,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-success">Actualizar</button>
-                            <a class="btn btn-secondary" th:href="@{/mostrarentradaproducto}">Cancelar</a>
+                            <a class="btn btn-secondary" th:href="@{/mostrarentradadetalle}">Cancelar</a>
                         </form>
                     </div>
                 </div>

@@ -12,7 +12,7 @@
             <section>
                 <div class="card">
                     <div class="card-header">
-                        Registro de Producto
+                        Registro de Entrada de Detalle
                     </div>
                     <div class="card-body">
                         <form th:action="@{/registrarentradadetalle}" method="post" th:object="${entradadetalle}">
@@ -22,13 +22,13 @@
                             </div>
                             <div class="col-6">
                                 <label for="txtPreC" class="form-label">Precio:</label>
-                                <input type="number" class="form-control" id="txtPreC" th:field="*{preciocompra}" required>     
+                                <input type="number" class="form-control" id="txtPreC" th:field="*{precio}" required>     
                             </div>
                             <div class="col-6">
-                                <label for="cboCategoria" class="form-label">Categoria:</label>
-                                <select id="cboCategoria" class="form-select" th:field="*{categoria}" required>
-                                    <option value="">Seleccione una categoria</option>
-                                    <option th:each="categoria:${categorias}" th:value="${categoria.codigo}" th:text="${categoria.nombre}"></option>
+                                <label for="cboProveedor" class="form-label">Codigo Proveedor:</label>
+                                <select id="cboProveedor" class="form-select" th:field="*{proveedor}" required>
+                                    <option value="">Seleccione un Proovedor</option>
+                                    <option th:each="proveedor:${proveedor}" th:value="${proveedor.codigo}" th:text="${proveedor.codigo}"></option>
                                 </select>
                             </div>
                             <div class="col-6">
@@ -40,7 +40,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary">Registrar</button>
-                            <a class="btn btn-secondary" th:href="@{/mostrarproducto}">Cancelar</a>
+                            <a class="btn btn-secondary" th:href="@{/mostrarentradadetalle}">Cancelar</a>
                         </form>
                     </div>
                 </div>
