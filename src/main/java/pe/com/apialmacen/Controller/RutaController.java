@@ -19,6 +19,7 @@ import pe.com.apialmacen.service.gestion.ProveedorService;
 import pe.com.apialmacen.service.gestion.RolesService;
 import pe.com.apialmacen.service.gestion.SalidaDetalleService;
 import pe.com.apialmacen.service.gestion.UsuariosService;
+import pe.com.apialmacen.service.gestion.EntradaService;
 
 @Controller
 public class RutaController {
@@ -40,6 +41,9 @@ public class RutaController {
     
     @Autowired
     private UsuariosService serviciousuarios;
+    
+    @Autowired
+    private EntradaService servicioentrada;
 
 
     @GetMapping()
@@ -376,6 +380,11 @@ public class RutaController {
         UsuariosEntity objusuarios = serviciousuarios.findById(id).get();
         serviciousuarios.delete(objusuarios);
         return "redirect:/mostrarusuarios?deshabilito";
-
-    }}
+    }
+    @GetMapping("/mostrarentrada")
+    public String MostrarEntrada(Model modelo) {
+        modelo.addAttribute("entrada", servicioentrada.findAllCustom());
+        return "/entrada/mostrarentrada";
+    }
+}
         
