@@ -110,7 +110,24 @@ public class RutaController {
         modelo.addAttribute("salida", serviciosalida.findAllCustom());
         return "/salida/mostrarsalida";
     }
+    
+    @GetMapping("/mostrarentrada")
+    public String MostrarEntrada(Model modelo) {
+        modelo.addAttribute("entrada", servicioentrada.findAllCustom());
+        return "/entrada/mostrarentrada";
+    }
+    
 
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @GetMapping("/principal")
     public String MostrarMenuPrincipal() {
         return "principal";
@@ -152,6 +169,7 @@ public class RutaController {
         modelo.addAttribute("productos", servicioproducto.findAllCustom());
         modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
         modelo.addAttribute("salidadetalle", serviciosalidadetalle.findAllCustom());
+         modelo.addAttribute("salida",serviciosalida.findAllCustom());
         return "/salida/registrarsalida";
     }
     
@@ -161,10 +179,46 @@ public class RutaController {
         return "/entradadetalle/registrarentradadetalle";
     }
     
+    
+    @GetMapping("/registroentrada")
+    public String MostrarRegistrarEntrada(Model modelo) {
+        
+        modelo.addAttribute("productos", servicioproducto.findAllCustom());
+        modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
+        modelo.addAttribute("entradadetalle", servicioentradadetalle.findAllCustom());
+        modelo.addAttribute("entrada",servicioentrada.findAllCustom());
+        return "/entrada/registrarentrada";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @GetMapping("/actualizocategoria/{id}")
     public String MostrarActualizarCategoria(@PathVariable Long id, Model modelo) {
         modelo.addAttribute("categorias", serviciocategoria.findById(id).get());
         return "/categoria/actualizarcategoria";
+    }
+    
+    
+    @GetMapping("/actualizousuarios/{id}")
+    public String MostrarActualizarUsuarios(@PathVariable Long id, Model modelo) {
+        modelo.addAttribute("usuarios", serviciocategoria.findById(id).get());
+        return "/usuarios/actualizarusuarios";
     }
     
     @GetMapping("/actualizoproducto/{id}")
@@ -202,12 +256,32 @@ public class RutaController {
         return "/salida/actualizarsalida";
     }
     
+     @GetMapping("/actualizoentrada/{id}")
+    public String MostrarActualizarEntrada(@PathVariable Long id, Model modelo) {
+        modelo.addAttribute("producto", servicioproducto.findAllCustom());
+        modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
+         modelo.addAttribute("entradadetalle", servicioentradadetalle.findAllCustom());
+        modelo.addAttribute("entrada", servicioentrada.findById(id).get());
+        return "/entrada/actualizarentrada";
+    }
+    
+    
+    
+    
     @GetMapping("/actualizoentradadetalle/{id}")
     public String MostrarActualizarEntradadetalle(@PathVariable Long id, Model modelo) {
         modelo.addAttribute("proveedor", servicioproveedor.findAllCustom());
         modelo.addAttribute("entradadetalle", servicioentradadetalle.findById(id).get());
         return "/entradadetalle/actualizarentradadetalle";
     }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     @GetMapping("/habilitocategoria")
@@ -249,14 +323,27 @@ public class RutaController {
     public String MostrarHabilitarSalida(Model modelo) {
         modelo.addAttribute("salida", serviciosalida.findAll());
         return "/salida/habilitarsalida";
-}
+    }
     
     @GetMapping("/habilitoentradadetalle")
     public String MostrarHabilitarEntradadetalle(Model modelo) {
         modelo.addAttribute("entradadetalle", servicioentradadetalle.findAll());
         return "/entradadetalle/habilitarentradadetalle";
     }
+    
+    @GetMapping("/habilitoentrada")
+    public String MostrarHabilitarEntrada(Model modelo) {
+        modelo.addAttribute("entrada", servicioentrada.findAll());
+        return "/entrada/habilitarentrada";
+    }
 
+    
+    
+    
+    
+    
+    
+    
     @ModelAttribute("categoria")
     public CategoriaEntity ModeloCategoria() {
         return new CategoriaEntity();
@@ -291,11 +378,23 @@ public class RutaController {
         return new SalidaEntity();
     }
     
-     @ModelAttribute("entradadetalle")
+    @ModelAttribute("entradadetalle")
     public EntradaDetalleEntity ModeloEntradaDetalle() {
         return new EntradaDetalleEntity();
     }
+    
+    @ModelAttribute("entrada")
+    public EntradaEntity ModeloEntrada() {
+        return new EntradaEntity();
+    }
 
+
+    
+    
+    
+    
+    
+    
     @PostMapping("/registrarcategoria")
     public String RegistroCategoria(@ModelAttribute("categoria") CategoriaEntity c) {
         serviciocategoria.add(c);
@@ -337,12 +436,31 @@ public class RutaController {
         return "redirect:/mostrarsalida?correcto";
     }
     
+    @PostMapping("/registrarentrada")
+    public String RegistroEntrada(@ModelAttribute("entrada") EntradaEntity sr) {
+        servicioentrada.add(sr);
+        return "redirect:/mostrarentrada?correcto";
+    }
+    
     @PostMapping("/registrarentradadetalle")
     public String RegistroEntradadetalle(@ModelAttribute("entradadetalle") EntradaDetalleEntity ed) {
         servicioentradadetalle.add(ed);
         return "redirect:/mostrarentradadetalle?correcto";
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @PostMapping("/actualizarcategoria/{id}")
     public String ActualizarCategoria(@PathVariable Long id, @ModelAttribute("categoria") CategoriaEntity c) {
         serviciocategoria.update(c);
@@ -389,7 +507,33 @@ public class RutaController {
         servicioentradadetalle.update(ed);
         return "redirect:/mostrarentradadetalle?actualizo";
     }
+    
+    @PostMapping("/actualizarentrada/{id}")
+    public String ActualizarEntrada(@PathVariable Long id, @ModelAttribute("entrada") EntradaEntity sr) {
+        servicioentrada.update(sr);
+        return "redirect:/mostrarentrada?actualizo";
+    }
+    
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @GetMapping("/eliminarcategoria/{id}")
     public String EliminarCategoria(@PathVariable Long id, Model modelo) {
         CategoriaEntity objcategoria = serviciocategoria.findById(id).get();
@@ -444,6 +588,26 @@ public class RutaController {
         servicioentradadetalle.delete(objentradadetalle);
         return "redirect:/mostrarentradadetalle?elimino";
     }
+    
+    @GetMapping("/eliminarentrada/{id}")
+    public String EliminarEntrada(@PathVariable Long id, Model modelo) {
+        EntradaEntity objentrada = servicioentrada.findById(id).get();
+        servicioentrada.delete(objentrada);
+        return "redirect:/mostrarentrada?elimino";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     @GetMapping("/habilitarcategoria/{id}")
     public String HabilitarCategoria(@PathVariable Long id, Model modelo) {
@@ -499,6 +663,24 @@ public class RutaController {
         servicioentradadetalle.enable(objentradadetalle);
         return "redirect:/mostrarproducto?habilito";
     }
+    
+    @GetMapping("/habilitarentrada/{id}")
+    public String HabilitarEntrada(@PathVariable Long id, Model modelo) {
+        EntradaEntity objentrada = servicioentrada.findById(id).get();
+        servicioentrada.enable(objentrada);
+        return "redirect:/mostrarentrada?habilito";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     @GetMapping("/deshabilitarcategoria/{id}")
     public String DeshabilitarCategoria(@PathVariable Long id, Model modelo) {
@@ -520,40 +702,10 @@ public class RutaController {
         serviciousuarios.delete(objusuarios);
         return "redirect:/mostrarusuarios?deshabilito";
     }
-    @GetMapping("/mostrarentrada")
-    public String MostrarEntrada(Model modelo) {
-        modelo.addAttribute("entrada", servicioentrada.findAllCustom());
-        return "/entrada/mostrarentrada";
-    }
     
-    @GetMapping("/registroentrada")
-    public String MostrarRegistrarEntrada(Model modelo) {
-        modelo.addAttribute("productos", servicioproducto.findAllCustom());
-        modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
-        modelo.addAttribute("entradadetalles", servicioentradadetalle.findAllCustom());
-
-        return "/entrada/registrarentrada";
-    }
     
-    @PostMapping("/registrarentrada")
-    public String RegistroEntrada(@ModelAttribute("entrada") EntradaEntity e) {
-        servicioentrada.add(e);
-        return "redirect:/mostrarentrada?correcto";
-    }
     
-     @GetMapping("/actualizoentrada/{id}")
-    public String MostrarActualizarEntrada(@PathVariable Long id, Model modelo) {
-        modelo.addAttribute("productos", servicioproducto.findAllCustom());
-        modelo.addAttribute("usuarios", serviciousuarios.findAllCustom());
-        modelo.addAttribute("entradadetalles", servicioentradadetalle.findAllCustom());
-        modelo.addAttribute("entradas", servicioentrada.findById(id).get());
-        return "/producto/actualizarproducto";
-    }
     
-    @PostMapping("/actualizarentrada/{id}")
-    public String ActualizarEntrada(@PathVariable Long id, @ModelAttribute("entrada") EntradaEntity e) {
-        servicioentrada.update(e);
-        return "redirect:/mostrarentrada?actualizo";
-    }
+    
 }
         

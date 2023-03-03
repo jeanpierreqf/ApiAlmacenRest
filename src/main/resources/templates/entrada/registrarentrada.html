@@ -19,30 +19,30 @@
 
                             <div class="col-6">
                                 <label for="cboProducto" class="form-label">Producto:</label>
-                                <select id="cboProducto" class="form-select" th:field="*{producto}" required>
+                                <select id="cboProducto" class="form-select" th:field="*{productos}" required>
                                     <option value="">Seleccione un producto</option>
                                     <option th:each="producto:${productos}" th:value="${producto.codigo}" th:text="${producto.nombre}"></option>
                                 </select>    
                             </div>
                             <div class="col-6">
-                                <label for="cboUsuario" class="form-label">Usuario:</label>
-                                <select id="cboUsuario" class="form-select" th:field="*{usuario}" required>
+                                <label for="cboUsuarios" class="form-label">Usuarios:</label>
+                                <select id="cboUsuarios" class="form-select" th:field="*{usuarios}" required>
                                     <option value="">Seleccione un usuario</option>
                                     <option th:each="usuario:${usuarios}" th:value="${usuario.codigo}" th:text="${usuario.nombre}"></option>
                                 </select>     
                             </div>
                             <div class="col-6">
                                 <label for="cboDetalle" class="form-label">Detalle:</label>
-                                <select id="cboDetalle" class="form-select" th:field="*{entradadetalle}" required>
+                                <select id="cboDetalle" class="form-select" th:field="*{entradadetalles}" required>
                                     <option value="">Seleccione un detalle</option>
-                                    <option th:each="entradadetalle:${entradadetalles}" th:value="${entradadetalle.codigo}" th:text="${entradadetalle.codigo}"></option>
+                                    <option th:each="entradadetalle:${entradadetalles}" th:value="${entradadetalle.codigo}" th:text="${entradadetalle.codigo + '' }"></option>
                                 </select>     
                             </div>                            
                             <div class="col-6">
-                                <label for="txtNom" class="form-label">Estado:</label>
+                                <label for="chkEstt" class="form-label">Estado:</label>
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="chkEst" th:field="*{estado}">
-                                    <label class="form-check-label" for="chkEst">Habilitado</label>
+                                    <input type="checkbox" class="form-check-input" id="chkEstt" name="estado}">
+                                    <label class="form-check-label" for="chkEstt">Habilitado</label>
                                 </div>
                             </div>
 
@@ -61,5 +61,3 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
     </body>
 </html>
-
-
