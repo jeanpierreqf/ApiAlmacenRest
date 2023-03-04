@@ -42,5 +42,6 @@ public class EntradaDetalleEntity extends EntityBase implements Serializable {
     @JoinColumn(name="codprove",nullable = false)
     private ProveedorEntity proveedor;
     
-    
+   
 }
+  //s
