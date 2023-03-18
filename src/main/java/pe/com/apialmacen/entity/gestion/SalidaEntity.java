@@ -29,13 +29,15 @@ public class SalidaEntity extends EntityBase implements Serializable{
     @Column(name="codsalid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
-    @ManyToOne //relacion de uno a muchos
-    @JoinColumn(name="codpro",nullable = false)
-    private ProductoEntity producto;
+    
+    @Column(name="destino")
+    private String destino;
+    
+    @Column(name="estado")
+    private String estado;
+
     @ManyToOne //relacion de uno a muchos
     @JoinColumn(name="codusu",nullable = false)
     private UsuariosEntity usuarios;
-    @ManyToOne //relacion de uno a muchos
-    @JoinColumn(name="codsalidade",nullable = false)
-    private SalidaDetalleEntity salidadetalle;
+ 
 }

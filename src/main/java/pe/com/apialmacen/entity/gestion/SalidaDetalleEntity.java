@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -38,4 +39,14 @@ public class SalidaDetalleEntity extends EntityBase implements Serializable {
     @Column(name="presalida", nullable = false)
     @Positive(message = "El precio de salida debe ser un número positivo")
     private double precio;
+    @Column(name="estado")
+    private int estado;
+    
+    @OneToMany 
+    @JoinColumn(name="codpro",nullable = false)
+    private ProductoEntity producto;
+    
+    @OneToMany 
+    @JoinColumn(name="codsalid",nullable = false)
+    private SalidaEntity salida;
 }

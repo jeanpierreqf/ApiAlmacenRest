@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
@@ -29,14 +30,16 @@ public class EntradaEntity extends EntityBase implements Serializable{
     @Column(name="codent")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
-    @ManyToOne //relacion de uno a muchos  
-    @JoinColumn(name="codpro",nullable = false)
-    private ProductoEntity producto;
-    @ManyToOne //relacion de uno a muchos
+
+    @Column(name="estado")
+    private int estado;
+    
+    @OneToMany 
     @JoinColumn(name="codusu",nullable = false)
-    private UsuariosEntity usuarios;
-    @ManyToOne //relacion de uno a muchos
-    @JoinColumn(name="codentra",nullable = false)
-    private EntradaDetalleEntity entradadetalle;
+    private UsuariosEntity usuario;
+    
+    @OneToMany
+    @JoinColumn(name="codprove",nullable = false)
+    private ProveedorEntity proveedor;
     
 }
