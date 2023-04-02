@@ -25,7 +25,7 @@ public class UsuarioDTO extends GenericoDTO{
     private String apellido;
     private String sexo;
     private String fecha;
-    private String fechainfreso;
+    private String fechaingreso;
     private String contraseña;
     private RolesEntity roles;
 }
