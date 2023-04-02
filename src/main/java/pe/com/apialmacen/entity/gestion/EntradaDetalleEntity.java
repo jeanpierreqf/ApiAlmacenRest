@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
 import java.io.Serializable;
@@ -33,17 +34,19 @@ public class EntradaDetalleEntity extends EntityBase implements Serializable {
     @Column(name="codentra")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
+    
     @Column(name="cantentrada",nullable = false)
     @Positive(message = "El telefono del proveedor")//permita valores positivos
     private int cantidad;
+    
     @Column(name="preentrada",nullable = false)
-    @Positive(message = "La direccion del proveedor")
     private double precio;
-    @ManyToOne //relacion de uno a muchos
+    
+    @OneToOne //relacion de uno a muchos
     @JoinColumn(name="codpro",nullable = false)
     private ProductoEntity producto;
     
-    @OneToMany 
+    @ManyToOne 
     @JoinColumn(name="codent",nullable = false)
     private EntradaEntity entrada;
 }

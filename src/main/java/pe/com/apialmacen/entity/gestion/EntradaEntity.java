@@ -30,15 +30,12 @@ public class EntradaEntity extends EntityBase implements Serializable{
     @Column(name="codent")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
-
-    @Column(name="estado")
-    private int estado;
     
-    @OneToMany 
+    @ManyToOne 
     @JoinColumn(name="codusu",nullable = false)
     private UsuariosEntity usuario;
     
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="codprove",nullable = false)
     private ProveedorEntity proveedor;
     

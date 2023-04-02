@@ -33,20 +33,20 @@ public class SalidaDetalleEntity extends EntityBase implements Serializable {
     @Column(name="codsalidade")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
+    
     @Column(name="cantsalida", nullable = false)
     @Positive(message = "La cantidad de salida debe ser un número positivo")
     private int cantidad;
+    
     @Column(name="presalida", nullable = false)
     @Positive(message = "El precio de salida debe ser un número positivo")
     private double precio;
-    @Column(name="estado")
-    private int estado;
     
-    @OneToMany 
+    @ManyToOne 
     @JoinColumn(name="codpro",nullable = false)
     private ProductoEntity producto;
     
-    @OneToMany 
+    @ManyToOne 
     @JoinColumn(name="codsalid",nullable = false)
     private SalidaEntity salida;
 }

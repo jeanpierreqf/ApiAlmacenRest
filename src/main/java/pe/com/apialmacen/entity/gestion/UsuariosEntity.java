@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
@@ -49,6 +50,7 @@ public class UsuariosEntity extends EntityBase implements Serializable{
     @Column(name="finemp",nullable = false)
     @NotEmpty(message = "fecha de ingreso")
     private String fechaingreso;
+    
     @Column(name="contem",nullable = false)
     @NotEmpty(message = "contrasena del empleado")
     private String contraseña;
