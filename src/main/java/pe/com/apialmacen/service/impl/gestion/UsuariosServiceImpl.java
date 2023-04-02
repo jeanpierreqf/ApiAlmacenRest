@@ -5,9 +5,11 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.com.apialmacen.dto.gestion.UsuarioDTO;
 import pe.com.apialmacen.entity.gestion.UsuariosEntity;
 import pe.com.apialmacen.repository.gestion.UsuariosRepository;
 import pe.com.apialmacen.service.gestion.UsuariosService;
+import pe.com.apialmacen.util.mapper.GenericoMapper;
 
 @Service
 public class UsuariosServiceImpl implements UsuariosService {
@@ -15,44 +17,54 @@ public class UsuariosServiceImpl implements UsuariosService {
     @Autowired
     private UsuariosRepository repositorio;
 
+    @Autowired
+    private GenericoMapper<UsuariosEntity, UsuarioDTO> categoriamapper;
+
     @Override
-    public List<UsuariosEntity> findAll() {
-        return repositorio.findAll();
+    public List<UsuarioDTO> findAll() {
+        List<UsuariosEntity> lista = repositorio.findAll();
+        return categoriamapper.ConvertirListaDTO(lista, UsuarioDTO.class);
     }
 
     @Override
-    public List<UsuariosEntity> findAllCustom() {
-        return repositorio.findAllCustom();
+    public List<UsuarioDTO> findAllCustom() {
+        List<UsuariosEntity> lista = repositorio.findAllCustom();
+        return categoriamapper.ConvertirListaDTO(lista, UsuarioDTO.class);
     }
 
     @Override
-    public UsuariosEntity add(UsuariosEntity t) {
-        return repositorio.save(t);
+    public UsuarioDTO add(UsuarioDTO t) {
+        UsuariosEntity objcategoria = categoriamapper.ConvertirEntity(t, UsuariosEntity.class);
+        return categoriamapper.ConvertirDTO(repositorio.save(objcategoria), UsuarioDTO.class);
     }
 
     @Override
-    public Optional<UsuariosEntity> findById(Long id) {
-        return repositorio.findById(id);
+    public UsuarioDTO update(UsuarioDTO t) {
+        UsuariosEntity objcategoria = repositorio.getById(t.getCodigo());
+        BeanUtils.copyProperties(t, objcategoria);
+        return categoriamapper.ConvertirDTO(repositorio.save(objcategoria), UsuarioDTO.class);
     }
 
     @Override
-    public UsuariosEntity update(UsuariosEntity t) {
-        UsuariosEntity objusuarios = repositorio.getById(t.getCodigo());
-        BeanUtils.copyProperties(t, objusuarios);
-        return repositorio.save(objusuarios);
+    public UsuarioDTO delete(UsuarioDTO t) {
+        UsuariosEntity objcategoria = repositorio.getById(t.getCodigo());
+        objcategoria.setEstado(false);
+        return categoriamapper.ConvertirDTO(repositorio.save(objcategoria), UsuarioDTO.class);
+
     }
 
     @Override
-    public UsuariosEntity delete(UsuariosEntity t) {
-        UsuariosEntity objusuarios = repositorio.getById(t.getCodigo());
-        objusuarios.setEstado(false);
-        return repositorio.save(objusuarios);
+    public UsuarioDTO enable(UsuarioDTO t) {
+        UsuariosEntity objcategoria = repositorio.getById(t.getCodigo());
+        objcategoria.setEstado(true);
+        return categoriamapper.ConvertirDTO(repositorio.save(objcategoria), UsuarioDTO.class);
     }
 
     @Override
-    public UsuariosEntity enable(UsuariosEntity t) {
-        UsuariosEntity objusuarios = repositorio.getById(t.getCodigo());
-        objusuarios.setEstado(true);
-        return repositorio.save(objusuarios);
+    public UsuarioDTO findById(Long id) {
+        UsuariosEntity lista = repositorio.findById(id).get();
+        return categoriamapper.ConvertirDTO(lista, UsuarioDTO.class);
     }
+    
+
 }

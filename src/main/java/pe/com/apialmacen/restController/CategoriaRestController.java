@@ -11,46 +11,55 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pe.com.apialmacen.entity.gestion.CategoriaEntity;
+import pe.com.apialmacen.dto.gestion.CategoriaDTO;
 import pe.com.apialmacen.service.gestion.CategoriaService;
 
 @RestController
 @RequestMapping("/categoria")
 public class CategoriaRestController {
+
     @Autowired
     private CategoriaService servicio;
-    
+
+
     @GetMapping
-    public List<CategoriaEntity> findAll(){
+    public List<CategoriaDTO> findAll() {
         return servicio.findAll();
     }
-    
+
     @GetMapping("/custom")
-    public List<CategoriaEntity> findAllCustom(){
+    public List<CategoriaDTO> findAllCustom() {
         return servicio.findAllCustom();
     }
     
-    @PostMapping
-    public CategoriaEntity add(@RequestBody CategoriaEntity c){
-        return servicio.add(c);
-    }
-    
     @GetMapping("/{id}")
-    public Optional<CategoriaEntity> findById(@PathVariable long id){
+    public CategoriaDTO findById(@PathVariable long id) {
         return servicio.findById(id);
     }
-    
+
+    @PostMapping
+    public CategoriaDTO add(@RequestBody CategoriaDTO c) {
+        return servicio.add(c);
+    }
+
     @PutMapping("/{id}")
-    public CategoriaEntity update(@PathVariable long id,@RequestBody CategoriaEntity c){
+    public CategoriaDTO update(@PathVariable long id, @RequestBody CategoriaDTO c) {
         c.getCodigo();
         return servicio.update(c);
     }
-    
+
     @DeleteMapping("/{id}")
-    public CategoriaEntity delete(@PathVariable long id){
-        CategoriaEntity objcategoria=new CategoriaEntity();
+    public CategoriaDTO delete(@PathVariable long id) {
+        CategoriaDTO objcategoria = new CategoriaDTO();
         objcategoria.setCodigo(id);
-        return servicio.delete(CategoriaEntity.builder().codigo(id).build());
+        return servicio.delete(CategoriaDTO.builder().codigo(id).build());
     }
-    
+
+    @PutMapping("/enable/{id}")
+    public CategoriaDTO enable(@PathVariable long id) {
+        CategoriaDTO objcategoria = new CategoriaDTO();
+        objcategoria.setCodigo(id);
+        return servicio.enable(CategoriaDTO.builder().codigo(id).build());
+    }
+
 }

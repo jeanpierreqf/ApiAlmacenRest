@@ -11,46 +11,56 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pe.com.apialmacen.dto.gestion.EntradaDTO;
 import pe.com.apialmacen.entity.gestion.EntradaEntity;
 import pe.com.apialmacen.service.gestion.EntradaService;
 
 @RestController
 @RequestMapping("/entrada")
 public class EntradaRestController {
-    @Autowired
-    private EntradaService servicio;
     
+@Autowired
+    private EntradaService servicio;
+
+
     @GetMapping
-    public List<EntradaEntity> findAll(){
+    public List<EntradaDTO> findAll() {
         return servicio.findAll();
     }
-    
+
     @GetMapping("/custom")
-    public List<EntradaEntity> findAllCustom(){
+    public List<EntradaDTO> findAllCustom() {
         return servicio.findAllCustom();
     }
     
-    @PostMapping
-    public EntradaEntity add(@RequestBody EntradaEntity e){
-        return servicio.add(e);
-    }
-    
     @GetMapping("/{id}")
-    public Optional<EntradaEntity> findById(@PathVariable long id){
+    public EntradaDTO findById(@PathVariable long id) {
         return servicio.findById(id);
     }
-    
+
+    @PostMapping
+    public EntradaDTO add(@RequestBody EntradaDTO c) {
+        return servicio.add(c);
+    }
+
     @PutMapping("/{id}")
-    public EntradaEntity update(@PathVariable long id,@RequestBody EntradaEntity e){
-        e.getCodigo();
-        return servicio.update(e);
+    public EntradaDTO update(@PathVariable long id, @RequestBody EntradaDTO c) {
+        c.getCodigo();
+        return servicio.update(c);
     }
-    
+
     @DeleteMapping("/{id}")
-    public EntradaEntity delete(@PathVariable long id){
-        EntradaEntity objentrada=new EntradaEntity();
-        objentrada.setCodigo(id);
-        return servicio.delete(EntradaEntity.builder().codigo(id).build());
+    public EntradaDTO delete(@PathVariable long id) {
+        EntradaDTO objcategoria = new EntradaDTO();
+        objcategoria.setCodigo(id);
+        return servicio.delete(EntradaDTO.builder().codigo(id).build());
     }
-    
+
+    @PutMapping("/enable/{id}")
+    public EntradaDTO enable(@PathVariable long id) {
+        EntradaDTO objcategoria = new EntradaDTO();
+        objcategoria.setCodigo(id);
+        return servicio.enable(EntradaDTO.builder().codigo(id).build());
+    }
+
 }

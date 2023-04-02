@@ -21,4 +21,5 @@ import pe.com.apialmacen.dto.generic.GenericoDTO;
 public class RolesDTO extends GenericoDTO {
     private String nombrerol;
     private boolean estado;
+
 }

@@ -7,7 +7,7 @@ public interface GenericoService<T> {
     List<T> findAll();
     List<T> findAllCustom();
     T add(T t);
-    Optional<T> findById(Long id);
+    T findById(Long id);
     T update(T t);
     T delete(T t);
     T enable(T t);

@@ -28,4 +28,5 @@ public class ProductoDTO extends GenericoDTO{
     private int cantidad;
     private boolean estado;
     private ProductoEntity categoria;
+
 }

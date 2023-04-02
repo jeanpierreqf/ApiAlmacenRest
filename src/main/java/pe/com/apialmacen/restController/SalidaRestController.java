@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pe.com.apialmacen.dto.gestion.SalidaDTO;
 import pe.com.apialmacen.entity.gestion.EntradaEntity;
 import pe.com.apialmacen.entity.gestion.SalidaEntity;
 import pe.com.apialmacen.service.gestion.SalidaService;
@@ -21,38 +22,46 @@ public class SalidaRestController {
     
     @Autowired
     private SalidaService servicio;
-    
+
+
     @GetMapping
-    public List<SalidaEntity> findAll(){
+    public List<SalidaDTO> findAll() {
         return servicio.findAll();
     }
-    
+
     @GetMapping("/custom")
-    public List<SalidaEntity> findAllCustom(){
+    public List<SalidaDTO> findAllCustom() {
         return servicio.findAllCustom();
     }
     
-    @PostMapping
-    public SalidaEntity add(@RequestBody SalidaEntity sr){
-        return servicio.add(sr);
-    }
-    
     @GetMapping("/{id}")
-    public Optional<SalidaEntity> findById(@PathVariable long id){
+    public SalidaDTO findById(@PathVariable long id) {
         return servicio.findById(id);
     }
-    
+
+    @PostMapping
+    public SalidaDTO add(@RequestBody SalidaDTO c) {
+        return servicio.add(c);
+    }
+
     @PutMapping("/{id}")
-    public SalidaEntity update(@PathVariable long id,@RequestBody SalidaEntity sr){
-        sr.getCodigo();
-        return servicio.update(sr);
+    public SalidaDTO update(@PathVariable long id, @RequestBody SalidaDTO c) {
+        c.getCodigo();
+        return servicio.update(c);
     }
-    
+
     @DeleteMapping("/{id}")
-    public SalidaEntity delete(@PathVariable long id){
-        SalidaEntity objsalida=new SalidaEntity();
-        objsalida.setCodigo(id);
-        return servicio.delete(SalidaEntity.builder().codigo(id).build());
+    public SalidaDTO delete(@PathVariable long id) {
+        SalidaDTO objcategoria = new SalidaDTO();
+        objcategoria.setCodigo(id);
+        return servicio.delete(SalidaDTO.builder().codigo(id).build());
     }
-    
+
+    @PutMapping("/enable/{id}")
+    public SalidaDTO enable(@PathVariable long id) {
+        SalidaDTO objcategoria = new SalidaDTO();
+        objcategoria.setCodigo(id);
+        return servicio.enable(SalidaDTO.builder().codigo(id).build());
+    }
+
 }

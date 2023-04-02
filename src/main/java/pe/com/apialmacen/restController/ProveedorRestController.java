@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pe.com.apialmacen.dto.gestion.ProveedorDTO;
 import pe.com.apialmacen.entity.gestion.ProveedorEntity;
 import pe.com.apialmacen.service.gestion.ProveedorService;
 
@@ -19,39 +20,46 @@ import pe.com.apialmacen.service.gestion.ProveedorService;
 public class ProveedorRestController {
     @Autowired
     private ProveedorService servicio;
-    
+
+
     @GetMapping
-    public List<ProveedorEntity> findAll(){
+    public List<ProveedorDTO> findAll() {
         return servicio.findAll();
     }
-    
+
     @GetMapping("/custom")
-    public List<ProveedorEntity> findAllCustom(){
+    public List<ProveedorDTO> findAllCustom() {
         return servicio.findAllCustom();
     }
     
-    @PostMapping
-    public ProveedorEntity add(@RequestBody ProveedorEntity d){
-        return servicio.add(d);
-    }
-    
     @GetMapping("/{id}")
-    public Optional<ProveedorEntity> findById(@PathVariable long id){
+    public ProveedorDTO findById(@PathVariable long id) {
         return servicio.findById(id);
     }
-    
-    @PutMapping("/{id}")
-    public ProveedorEntity update(@PathVariable long id,@RequestBody ProveedorEntity d){
-        d.getCodigo();
-        return servicio.update(d);
-    }
-    
-    @DeleteMapping("/{id}")
-    public ProveedorEntity delete(@PathVariable long id){
-        ProveedorEntity objproveedor=new ProveedorEntity();
-        objproveedor.setCodigo(id);
-        return servicio.delete(ProveedorEntity.builder().codigo(id).build());
-    }
-    
-}
 
+    @PostMapping
+    public ProveedorDTO add(@RequestBody ProveedorDTO c) {
+        return servicio.add(c);
+    }
+
+    @PutMapping("/{id}")
+    public ProveedorDTO update(@PathVariable long id, @RequestBody ProveedorDTO c) {
+        c.getCodigo();
+        return servicio.update(c);
+    }
+
+    @DeleteMapping("/{id}")
+    public ProveedorDTO delete(@PathVariable long id) {
+        ProveedorDTO objcategoria = new ProveedorDTO();
+        objcategoria.setCodigo(id);
+        return servicio.delete(ProveedorDTO.builder().codigo(id).build());
+    }
+
+    @PutMapping("/enable/{id}")
+    public ProveedorDTO enable(@PathVariable long id) {
+        ProveedorDTO objcategoria = new ProveedorDTO();
+        objcategoria.setCodigo(id);
+        return servicio.enable(ProveedorDTO.builder().codigo(id).build());
+    }
+
+}

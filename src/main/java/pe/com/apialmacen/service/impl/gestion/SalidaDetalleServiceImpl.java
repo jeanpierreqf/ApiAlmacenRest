@@ -5,55 +5,66 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.com.apialmacen.dto.gestion.SalidaDetalleDTO;
 import pe.com.apialmacen.entity.gestion.SalidaDetalleEntity;
 import pe.com.apialmacen.repository.gestion.SalidaDetalleRepository;
 import pe.com.apialmacen.service.gestion.SalidaDetalleService;
+import pe.com.apialmacen.util.mapper.GenericoMapper;
 
 @Service
 public class SalidaDetalleServiceImpl implements SalidaDetalleService{
     
     @Autowired
-     private SalidaDetalleRepository repositorio;
+    private SalidaDetalleRepository repositorio;
+
+    @Autowired
+    private GenericoMapper<SalidaDetalleEntity, SalidaDetalleDTO> categoriamapper;
 
     @Override
-    public List<SalidaDetalleEntity> findAll() {
-      return repositorio.findAll();        
+    public List<SalidaDetalleDTO> findAll() {
+        List<SalidaDetalleEntity> lista = repositorio.findAll();
+        return categoriamapper.ConvertirListaDTO(lista, SalidaDetalleDTO.class);
     }
 
     @Override
-    public List<SalidaDetalleEntity> findAllCustom() {
-        return repositorio.findAllCustom();
+    public List<SalidaDetalleDTO> findAllCustom() {
+        List<SalidaDetalleEntity> lista = repositorio.findAllCustom();
+        return categoriamapper.ConvertirListaDTO(lista, SalidaDetalleDTO.class);
+    }
+
+    @Override
+    public SalidaDetalleDTO add(SalidaDetalleDTO t) {
+        SalidaDetalleEntity objcategoria = categoriamapper.ConvertirEntity(t, SalidaDetalleEntity.class);
+        return categoriamapper.ConvertirDTO(repositorio.save(objcategoria), SalidaDetalleDTO.class);
+    }
+
+    @Override
+    public SalidaDetalleDTO update(SalidaDetalleDTO t) {
+        SalidaDetalleEntity objcategoria = repositorio.getById(t.getCodigo());
+        BeanUtils.copyProperties(t, objcategoria);
+        return categoriamapper.ConvertirDTO(repositorio.save(objcategoria), SalidaDetalleDTO.class);
+    }
+
+    @Override
+    public SalidaDetalleDTO delete(SalidaDetalleDTO t) {
+        SalidaDetalleEntity objcategoria = repositorio.getById(t.getCodigo());
+        objcategoria.setEstado(false);
+        return categoriamapper.ConvertirDTO(repositorio.save(objcategoria), SalidaDetalleDTO.class);
+
+    }
+
+    @Override
+    public SalidaDetalleDTO enable(SalidaDetalleDTO t) {
+        SalidaDetalleEntity objcategoria = repositorio.getById(t.getCodigo());
+        objcategoria.setEstado(true);
+        return categoriamapper.ConvertirDTO(repositorio.save(objcategoria), SalidaDetalleDTO.class);
+    }
+
+    @Override
+    public SalidaDetalleDTO findById(Long id) {
+        SalidaDetalleEntity lista = repositorio.findById(id).get();
+        return categoriamapper.ConvertirDTO(lista, SalidaDetalleDTO.class);
     }
     
-    @Override
-    public SalidaDetalleEntity add(SalidaDetalleEntity t) {
-        return repositorio.save(t);
-    }
 
-    @Override
-    public Optional<SalidaDetalleEntity> findById(Long id) {
-        return repositorio.findById(id);
-    }
-
-    @Override
-    public SalidaDetalleEntity update(SalidaDetalleEntity t) {
-        SalidaDetalleEntity objproveedor=repositorio.getById(t.getCodigo());
-        BeanUtils.copyProperties(t, objproveedor);
-        return repositorio.save(objproveedor);
-    }
-
-    @Override
-    public SalidaDetalleEntity delete(SalidaDetalleEntity t) {
-        SalidaDetalleEntity objproveedor=repositorio.getById(t.getCodigo());
-        objproveedor.setEstado(false);
-        return repositorio.save(objproveedor);
-    }   
-
-    @Override
-    public SalidaDetalleEntity enable(SalidaDetalleEntity t) {
-                SalidaDetalleEntity objproveedor=repositorio.getById(t.getCodigo());
-        objproveedor.setEstado(true);
-        return repositorio.save(objproveedor);
-    }
-    
 }

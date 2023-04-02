@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pe.com.apialmacen.dto.gestion.ProductoDTO;
 import pe.com.apialmacen.entity.gestion.ProductoEntity;
 import pe.com.apialmacen.service.gestion.ProductoService;
 
@@ -19,37 +20,46 @@ import pe.com.apialmacen.service.gestion.ProductoService;
 public class ProductoRestController {
      @Autowired
     private ProductoService servicio;
-    
+
+
     @GetMapping
-    public List<ProductoEntity> findAll(){
+    public List<ProductoDTO> findAll() {
         return servicio.findAll();
     }
-    
+
     @GetMapping("/custom")
-    public List<ProductoEntity> findAllCustom(){
+    public List<ProductoDTO> findAllCustom() {
         return servicio.findAllCustom();
     }
     
-    @PostMapping
-    public ProductoEntity add(@RequestBody ProductoEntity p){
-        return servicio.add(p);
-    }
-    
     @GetMapping("/{id}")
-    public Optional<ProductoEntity> findById(@PathVariable long id){
+    public ProductoDTO findById(@PathVariable long id) {
         return servicio.findById(id);
     }
-    
+
+    @PostMapping
+    public ProductoDTO add(@RequestBody ProductoDTO c) {
+        return servicio.add(c);
+    }
+
     @PutMapping("/{id}")
-    public ProductoEntity update(@PathVariable long id,@RequestBody ProductoEntity p){
-        p.getCodigo();
-        return servicio.update(p);
+    public ProductoDTO update(@PathVariable long id, @RequestBody ProductoDTO c) {
+        c.getCodigo();
+        return servicio.update(c);
     }
-    
+
     @DeleteMapping("/{id}")
-    public ProductoEntity delete(@PathVariable long id){
-        ProductoEntity objproducto=new ProductoEntity();
-        objproducto.setCodigo(id);
-        return servicio.delete(ProductoEntity.builder().codigo(id).build());
+    public ProductoDTO delete(@PathVariable long id) {
+        ProductoDTO objcategoria = new ProductoDTO();
+        objcategoria.setCodigo(id);
+        return servicio.delete(ProductoDTO.builder().codigo(id).build());
     }
+
+    @PutMapping("/enable/{id}")
+    public ProductoDTO enable(@PathVariable long id) {
+        ProductoDTO objcategoria = new ProductoDTO();
+        objcategoria.setCodigo(id);
+        return servicio.enable(ProductoDTO.builder().codigo(id).build());
+    }
+
 }

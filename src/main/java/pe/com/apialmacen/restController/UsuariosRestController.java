@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pe.com.apialmacen.dto.gestion.UsuarioDTO;
 import pe.com.apialmacen.entity.gestion.UsuariosEntity;
 import pe.com.apialmacen.service.gestion.UsuariosService;
 
@@ -19,38 +20,46 @@ import pe.com.apialmacen.service.gestion.UsuariosService;
 public class UsuariosRestController {
     @Autowired
     private UsuariosService servicio;
-    
+
+
     @GetMapping
-    public List<UsuariosEntity> findAll(){
+    public List<UsuarioDTO> findAll() {
         return servicio.findAll();
     }
-    
+
     @GetMapping("/custom")
-    public List<UsuariosEntity> findAllCustom(){
+    public List<UsuarioDTO> findAllCustom() {
         return servicio.findAllCustom();
     }
     
-    @PostMapping
-    public UsuariosEntity add(@RequestBody UsuariosEntity u){
-        return servicio.add(u);
-    }
-    
     @GetMapping("/{id}")
-    public Optional<UsuariosEntity> findById(@PathVariable long id){
+    public UsuarioDTO findById(@PathVariable long id) {
         return servicio.findById(id);
     }
-    
+
+    @PostMapping
+    public UsuarioDTO add(@RequestBody UsuarioDTO c) {
+        return servicio.add(c);
+    }
+
     @PutMapping("/{id}")
-    public UsuariosEntity update(@PathVariable long id,@RequestBody UsuariosEntity u){
-        u.getCodigo();
-        return servicio.update(u);
+    public UsuarioDTO update(@PathVariable long id, @RequestBody UsuarioDTO c) {
+        c.getCodigo();
+        return servicio.update(c);
     }
-    
+
     @DeleteMapping("/{id}")
-    public UsuariosEntity delete(@PathVariable long id){
-        UsuariosEntity objusuarios=new UsuariosEntity();
-        objusuarios.setCodigo(id);
-        return servicio.delete(UsuariosEntity.builder().codigo(id).build());
+    public UsuarioDTO delete(@PathVariable long id) {
+        UsuarioDTO objcategoria = new UsuarioDTO();
+        objcategoria.setCodigo(id);
+        return servicio.delete(UsuarioDTO.builder().codigo(id).build());
     }
-    
+
+    @PutMapping("/enable/{id}")
+    public UsuarioDTO enable(@PathVariable long id) {
+        UsuarioDTO objcategoria = new UsuarioDTO();
+        objcategoria.setCodigo(id);
+        return servicio.enable(UsuarioDTO.builder().codigo(id).build());
+    }
+
 }
