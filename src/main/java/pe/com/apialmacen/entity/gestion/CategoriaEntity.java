@@ -1,5 +1,6 @@
 package pe.com.apialmacen.entity.gestion;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +24,7 @@ import pe.com.apialmacen.entity.base.EntityBase;
 @EqualsAndHashCode(callSuper = false)
 @Entity(name="CategoriaEntity") //define el nombre de la entidad
 @Table(name="categoria") //define el nombre de la tabla
+@JsonPropertyOrder({"codigo","nombre","estado"})
 public class CategoriaEntity extends EntityBase implements Serializable{
     private static final long serialVersionUID=1L;
     @Id //representa la clave primaria
