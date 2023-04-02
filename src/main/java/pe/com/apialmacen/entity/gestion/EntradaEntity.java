@@ -1,5 +1,6 @@
 package pe.com.apialmacen.entity.gestion;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ import pe.com.apialmacen.entity.base.EntityBase;
 @EqualsAndHashCode(callSuper = false)
 @Entity(name="EntradaEntity") 
 @Table(name="entrada") 
+@JsonPropertyOrder({"codigo","usuario","proveedor","estado"})
 public class EntradaEntity extends EntityBase implements Serializable{
     private static final long serialVersionUID=1L;
     @Id 

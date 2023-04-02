@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package pe.com.apialmacen.dto.gestion;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -13,8 +17,8 @@ import pe.com.apialmacen.dto.generic.GenericoDTO;
 @AllArgsConstructor 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@JsonPropertyOrder({"codigo","nombre","estado"})
-public class CategoriaDTO extends GenericoDTO{
-    private String nombre;
+@JsonPropertyOrder({"codigo","nombrerol","estado"})
+public class RolesDTO extends GenericoDTO {
+    private String nombrerol;
     private boolean estado;
 }
